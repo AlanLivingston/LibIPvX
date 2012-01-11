@@ -31,7 +31,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::cout << "Default subnet mask: " << address->GetDefaultNetmask() << std::endl;
 
 	// We're using a default netmask, therefore we're not subnetting.
-	assert( address->IsSubnetted() == false );
+	assert( !address->IsSubnetted() );
 	if ( !address->IsSubnetted() ) {
 		std::cout << "IP Address: " << address->GetAddressString() << " is not subnetted." << std::endl;
 	}
