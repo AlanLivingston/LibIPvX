@@ -17,9 +17,6 @@
 
 #include "StdAfx.h"
 #include "ipvxlib.h"
-#include <iostream>
-#include <algorithm>
-#include <sstream>
 
 int IP4Address::GetNetmaskBitLength() {
 	return this->GetNetmaskBitset().count();
@@ -141,10 +138,10 @@ std::string IP4Address::GetBroadcastAddress() {
 	// Covert the std::string netmask into a bitset.
 	std::bitset<IPV4_ADDRESS_LENGTH> netmaskBits = this->ConvertIPv4StringToSTLBitset(this->netmask);
 
-	// Get the bitwise boolean AND.
+	// Get the bitwise boolean OR.
 	std::bitset<IPV4_ADDRESS_LENGTH> bitwiseBoolORbits = this->GetBitwiseBooleanORResult(this->GetBitwiseNOTResult(netmaskBits));	
 
-	// Return the decimal 
+	// Return the decimal formatted string.
 	return this->GetAddressStringFromBitset(bitwiseBoolORbits);
 }
 

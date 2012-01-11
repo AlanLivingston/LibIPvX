@@ -16,10 +16,6 @@
 */
 
 #pragma once
-#include <string>
-#include <bitset>
-#include <math.h>
-#include <memory>
 
 #define IPV4_ADDRESS_LENGTH 32
 #define IPV4_OCTET_LENGTH 8

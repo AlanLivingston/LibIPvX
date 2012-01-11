@@ -16,12 +16,6 @@
 */
 
 #include "stdafx.h"
-#include <stdio.h>
-#include <string>
-#include <iostream>
-#include <assert.h>
-#include <memory>
-
 #include "ipvxlib.h"
 
 // This program smoke tests the LibIPvX objects.
@@ -35,6 +29,12 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	assert( address->netmask == IPV4_CLASS_A_DEFAULT_SUBNET_MASK);
 	std::cout << "Default subnet mask: " << address->GetDefaultNetmask() << std::endl;
+
+	// We're using a default netmask, therefore we're not subnetting.
+	assert( address->IsSubnetted() == false );
+	if ( !address->IsSubnetted() ) {
+		std::cout << "IP Address: " << address->GetAddressString() << " is not subnetted." << std::endl;
+	}
 
 	// Now set a subnet netmask - this replaces the default subnet mask.
 	address->netmask = "255.255.128.0";
