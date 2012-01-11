@@ -14,15 +14,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -------------------------------------------------------------------------
+				_____ ______  _____  _____  _    _ _     _
+		 |        |   |_____]   |   |_____]  \  /   \___/ 
+		 |_____ __|__ |_____] __|__ |         \/   _/   \_
 
-LibIPvX is a development library that provide C++ programmers with
-IPv4 and IPv6 bitwise arithmetic, subnet calculation, instantiation of IP objects, range management 
-and with no external dependencies needed ( just the requirements of C++11 ).
+-------------------------------------------------------------------------
+
+LibIPvX is a development library that provide C++ programmers with IPv4 and IPv6 bitwise arithmetic, subnetting, native IP objects, address management and just with the requirements of C++11, no external dependencies are needed.
 
 This library is 100% free for you to use respecting the constraints of the GNU General Public License.
 
-We're well on the way to delivering the pre-alpha version of this library in
-the coming weeks. The bleeding edge code is available if you're interested in having a look, and the
-library doesn't yet refer to an actual library (DLL) in the true sense of the word, and for the moment is just a few of classes.
+We're well on the way to delivering the alpha of this library in the coming weeks. The bleeding edge code is available if you're keen to have a look, but for the moment LibIPvX doesn't yet refer to an actual link library (DLL) executable, and is for the moment only a series of classes.
 
-If you're interested in how the library works, look at the smoketests contained in main.cpp.
+In lieu of the documentation, if you're interested in how the library works, look at the smoketests contained in main.cpp, but don't worry, the official documentation, website and forums are on the roadmap for the first release!

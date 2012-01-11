@@ -50,11 +50,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	assert( address->GetBroadcastAddress() == "10.1.127.255" );
 	std::cout << "Broadcast address: " << address->GetBroadcastAddress() << std::endl;
 
+	// Is this address a broadcast address, no.
 	assert( !address->IsBroadcastAddress() );
 	if ( !address->IsBroadcastAddress() ) {
 		std::cout << address->GetAddressString() << " is not a broadcast address." << std::endl;
 	}
 
+	// Is this address a subnet address, no.
 	assert( !address->IsSubnetAddress() );
 	if ( !address->IsSubnetAddress() ) {
 			std::cout << address->GetAddressString() << " is not a subnet address." << std::endl;

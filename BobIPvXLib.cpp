@@ -107,10 +107,13 @@ std::string IP4Address::GetSubnetAddress() {
 std::bitset<IPV4_OCTET_LENGTH> IP4Address::ConvertSingleOctetFromDecimalToSTLBitset(const int _OctetDecimal) {
 	std::bitset<IPV4_OCTET_LENGTH> octetBitset;
 	
+	std::string octetString = this->ConvertDecimalIntegerToEightBitBinaryString(_OctetDecimal);
+
 	// loop to access each bit in indexed octet.
 	for ( size_t b = 0; b < IPV4_OCTET_LENGTH; b++ ) {
-			// Set bit to bool value at same index within the _address string
-			octetBitset.set(b, (bool) this->ConvertDecimalIntegerToEightBitBinaryString(_OctetDecimal).at(b));
+		// Set bit to bool value at same index within the _address string
+		bool bit = ( octetString.at(b) == 1) ? true : false;
+		octetBitset.set(b, bit);
 	}
 
 	return octetBitset;
