@@ -25,6 +25,8 @@
 
 #include "ipvxlib.h"
 
+// This program smoke tests LibIPvX. 
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	std::auto_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
@@ -33,7 +35,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	assert( address->GetDefaultSubnetMask() == "255.255.255.0");
 	std::cout << "Default subnet mask: " << address->GetDefaultSubnetMask() << std::endl;
 
-	// Now set a subnet netmask.
+	// Now set a subnet netmask - this replaces the default subnet mask.
 	address->netmask = "255.255.128.0";
 
 	// Display the binary of the IP's address space.

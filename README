@@ -1,0 +1,26 @@
+Copyright (C) 2012  Daniel Neil Hodder
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-------------------------------------------------------------------------
+
+Welcome to LibIPvX. LibIPvX is a development library that enables C++ programmers with
+IPv4 and IPv6 bitwise arithmetic, subnet calculation, instantiation of IP objects, range management 
+and with no external dependencies needed using the power of C++11.
+
+This library is 100% free for you to use respecting the constraints of the GNU General Public License.
+
+We're well on the way to delivering the pre-alpha version of this library for use in
+the comming weeks. The bleeding edge code is available if you're interested in having a look.
+
