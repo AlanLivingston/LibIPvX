@@ -285,13 +285,14 @@ std::string IP4Address::GetDefaultNetmask() {
 	if ( this->GetClass() == IPV4_ADDRESS_CLASS_A) {
 		return IPV4_CLASS_A_DEFAULT_SUBNET_MASK;
 	}
-
-	if ( this->GetClass() == IPV4_ADDRESS_CLASS_B ) {
+	else if ( this->GetClass() == IPV4_ADDRESS_CLASS_B ) {
 		return IPV4_CLASS_B_DEFAULT_SUBNET_MASK;
 	}
-
-	if ( this->GetClass() == IPV4_ADDRESS_CLASS_C ) {
+	else if ( this->GetClass() == IPV4_ADDRESS_CLASS_C ) {
 		return IPV4_CLASS_C_DEFAULT_SUBNET_MASK;
+	}
+	else {
+		return "Probably an invalid IP class.";
 	}
 }
 
@@ -314,11 +315,11 @@ char IP4Address::GetClass() {
 	}
 	else if ( this->GetFirstOctetBitset().at(3) == false ) {
 		// if fourth bit is zero, then address is class D.
-		return IPV4_ADDRESS_CLASS_A;		
+		return IPV4_ADDRESS_CLASS_D;		
 	}	
 	else if ( this->GetFirstOctetBitset().at(4) == false ) {
 		// if fifth bit is zero, then address is class E.
-		return  IPV4_ADDRESS_CLASS_A;		
+		return  IPV4_ADDRESS_CLASS_E;		
 	}
 	
 	return 'X'; // yelp! nothing can possible (sic) go wrong...that's the first thing that's gone wrong.
