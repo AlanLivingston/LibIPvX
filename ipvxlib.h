@@ -82,8 +82,8 @@ public:
 	bool								IsBroadcastAddress();
 	bool								IsSubnetAddress();		
 	bool								IsSubnetted();
-	std::auto_ptr<IP4Address>			GetFirstAddress();
-	std::auto_ptr<IP4Address>			GetLastAddress();
+	std::auto_ptr<IP4Address>			GetFirstAddressInRange();
+	std::auto_ptr<IP4Address>			GetLastAddressInRange();
 
 private:
 	std::string							ConvertDecimalIntegerToEightBitBinaryString(int _integer);

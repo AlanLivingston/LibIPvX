@@ -18,7 +18,7 @@
 #include "stdafx.h"
 #include "ipvxlib.h"
 
-// This program smoke tests the LibIPvX objects.
+// This program smoke tests the LibIPvX library.
 int _tmain(int argc, _TCHAR* argv[])
 {
 	std::cout << "        _____ ______  _____  _____  _    _ _     _" << std::endl; 
@@ -97,12 +97,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::cout << std::endl;
 	
 	// Get the first address available in the current range.
-	std::auto_ptr<IP4Address> _firstAddr = address->GetFirstAddress();
+	std::auto_ptr<IP4Address> _firstAddr = address->GetFirstAddressInRange();
+	assert(_firstAddr->GetAddressString() == "10.1.0.1");
 	std::cout << "First address in current range: " <<_firstAddr->GetAddressString() << std::endl;
 	std::cout << std::endl;
 
 	// Get the last address available in the current range.
-	std::auto_ptr<IP4Address> _lastAddr = address->GetLastAddress();
+	std::auto_ptr<IP4Address> _lastAddr = address->GetLastAddressInRange();
+	assert(_lastAddr->GetAddressString() == "10.1.127.254");
 	std::cout << "Last address in current range: " <<_lastAddr->GetAddressString() << std::endl;
 	std::cout << std::endl;
 
