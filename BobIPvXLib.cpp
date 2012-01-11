@@ -150,7 +150,6 @@ std::string IP4Address::GetAddressStringFromBitset(const std::bitset<IPV4_ADDRES
 
 std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBitwiseNOTResult(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset) {
 	std::bitset<IPV4_ADDRESS_LENGTH> tempBitset = _bitset;
-	
 	return tempBitset.flip();
 }
 
@@ -327,4 +326,14 @@ char IP4Address::GetClass() {
 
 std::string	IP4Address::GetNetmaskAddressString() {
 	return this->netmask;
+}
+
+std::string	IP4Address::GetInverseNetmaskString(){
+	return this->GetAddressStringFromBitset(this->GetInverseNetmaskBitset());
+}
+
+std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetInverseNetmaskBitset() {
+	std::bitset<IPV4_ADDRESS_LENGTH> bitset = this->ConvertIPv4StringToSTLBitset(this->GetNetmaskAddressString());
+	bitset.flip();	
+	return bitset;
 }

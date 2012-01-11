@@ -39,6 +39,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	// a subnet mask manually.
 
 	assert( address->GetNetmaskAddressString() == IPV4_CLASS_A_DEFAULT_SUBNET_MASK);
+	assert( address->GetNetmaskAddressString() == address->GetDefaultNetmask());
 	std::cout << "Default subnet mask: " << address->GetDefaultNetmask() << std::endl;
 	std::cout << std::endl;
 	
@@ -50,8 +51,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::cout << std::endl;
 	
 	// Now set a subnet netmask - this replaces the default subnet mask.
-	std::cout << "Applying mask " << address->netmask << std::endl;
 	address->netmask = "255.255.128.0";
+	std::cout << "Applying mask " << address->netmask << std::endl;
 	assert(address->GetNetmaskAddressString() == "255.255.128.0");
 	std::cout << std::endl;
 
@@ -60,6 +61,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	if ( address->IsSubnetted() ) {
 		std::cout << "IP Address: " << address->GetAddressString() << " with mask " << address->netmask << " is subnetted." << std::endl;
 	}
+	std::cout << std::endl;
+
+	// Get inverse netmask.
+	assert( address->GetInverseNetmaskString() == "0.0.127.255");
+	std::cout << "Get Inverse netmask string: " << address->GetInverseNetmaskString() << std::endl;
 	std::cout << std::endl;
 
 	// Display the binary of the IP's address space.

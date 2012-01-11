@@ -66,6 +66,8 @@ public:
 	int									GetFirstOctetDecimal();	
 	std::bitset<IPV4_OCTET_LENGTH>		GetFourthOctetBitset();
 	int									GetFourthOctetDecimal();
+	std::string							GetInverseNetmaskString();
+	std::bitset<IPV4_ADDRESS_LENGTH>	GetInverseNetmaskBitset();
 	int									GetNetmaskBitLength();
 	std::bitset<IPV4_ADDRESS_LENGTH>	GetNetmaskBitset();
 	std::string							GetNetmaskAddressString();
