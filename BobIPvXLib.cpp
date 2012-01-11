@@ -22,14 +22,18 @@
 #include <sstream>
 
 int IP4Address::GetNetmaskBitLength() {
-	return this->GetSubnetAddressBinary().count();
+	return this->GetNetmaskBitset().count();
+}
+
+std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetNetmaskBitset() {
+	return this->ConvertIPv4StringToSTLBitset(this->netmask);
 }
 
 std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBitwiseBooleanANDResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset) {
-	return this->GetAddressBinary() & bitset;
+	return this->GetAddressBitset() & bitset;
 }
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetAddressBinary() {
+std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetAddressBitset() {
 	return this->bitset;
 }
 
@@ -83,7 +87,7 @@ std::string IP4Address::GetSubnetAddress() {
 	std::bitset<IPV4_ADDRESS_LENGTH> bitwiseBoolANDbits = this->GetBitwiseBooleanANDResult(netmaskBits);	
 
 	// Return the decimal formatted string.
-	return this->GetAddressStringFromBinary(bitwiseBoolANDbits);
+	return this->GetAddressStringFromBitset(bitwiseBoolANDbits);
 }
 
 std::bitset<IPV4_OCTET_LENGTH> IP4Address::ConvertSingleOctetFromDecimalToSTLBitset(const int _OctetDecimal) {
@@ -98,7 +102,7 @@ std::bitset<IPV4_OCTET_LENGTH> IP4Address::ConvertSingleOctetFromDecimalToSTLBit
 	return octetBitset;
 }
 
-std::string IP4Address::GetAddressStringFromBinary(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset) {
+std::string IP4Address::GetAddressStringFromBitset(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset) {
 	
 	std::string _addressString;
 	for ( int o = 0; o < IPV4_OCTET_COUNT; o++ ){
@@ -141,12 +145,12 @@ std::string IP4Address::GetBroadcastAddress() {
 	std::bitset<IPV4_ADDRESS_LENGTH> bitwiseBoolORbits = this->GetBitwiseBooleanORResult(this->GetBitwiseNOTResult(netmaskBits));	
 
 	// Return the decimal 
-	return this->GetAddressStringFromBinary(bitwiseBoolORbits);
+	return this->GetAddressStringFromBitset(bitwiseBoolORbits);
 }
 
 std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBitwiseBooleanORResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset)
 {
-	return this->GetAddressBinary() | bitset; 
+	return this->GetAddressBitset() | bitset; 
 }
 
 std::string IP4Address::ConvertDecimalIntegerToEightBitBinaryString(const int _integer) {
@@ -172,24 +176,24 @@ std::string IP4Address::ConvertDecimalIntegerToEightBitBinaryString(const int _i
 	return _binaryString;
 }
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBroadcastAddressBinary() {
+std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBroadcastAddressBitset() {
 	return this->ConvertIPv4StringToSTLBitset(this->GetBroadcastAddress());
 }
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetSubnetAddressBinary() {
+std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetSubnetAddressBitset() {
 		return this->ConvertIPv4StringToSTLBitset(this->GetSubnetAddress());
 }
 
 std::string IP4Address::GetAddressString() {
-	return this->GetAddressStringFromBinary(this->bitset);
+	return this->GetAddressStringFromBitset(this->bitset);
 }
 
 bool IP4Address::IsBroadcastAddress() {
-	return ( this->GetBroadcastAddressBinary() == this->bitset ) ? true : false;	
+	return ( this->GetBroadcastAddressBitset() == this->bitset ) ? true : false;	
 }
 
 bool IP4Address::IsSubnetAddress() {
-	return ( this->GetSubnetAddressBinary() == this->bitset ) ? true : false;
+	return ( this->GetSubnetAddressBitset() == this->bitset ) ? true : false;
 }
 
 int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet) {
@@ -240,27 +244,27 @@ int	IP4Address::GetFourthOctetDecimal() {
 	return this->GetOctetDecimalByIndex(IPV4_FOURTH_OCTET_INDEX);
 }
 
-std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetFirstOctetBinary() {
+std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetFirstOctetBitset() {
 
 	return this->GetOctetBinaryByIndex(IPV4_FIRST_OCTET_INDEX);
 }
 
-std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetSecondOctetBinary() {
+std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetSecondOctetBitset() {
 
 	return this->GetOctetBinaryByIndex(IPV4_SECOND_OCTET_INDEX);
 }
 
-std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetThirdOctetBinary() {
+std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetThirdOctetBitset() {
 
 	return this->GetOctetBinaryByIndex(IPV4_THIRD_OCTET_INDEX);
 }
 
-std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetFourthOctetBinary() {
+std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetFourthOctetBitset() {
 
 	return this->GetOctetBinaryByIndex(IPV4_FOURTH_OCTET_INDEX);
 }
 
-std::string IP4Address::GetDefaultSubnetMask() {
+std::string IP4Address::GetDefaultNetmask() {
 	if ( this->GetClass() == IPV4_ADDRESS_CLASS_A) {
 		return IPV4_CLASS_A_DEFAULT_SUBNET_MASK;
 	}
@@ -279,23 +283,23 @@ char IP4Address::GetClass() {
 	// Check the first octet for the whereabouts of the zero bit
 	// as this is indicative the class.
 		
-	if ( this->GetFirstOctetBinary().at(0) == false ) {
+	if ( this->GetFirstOctetBitset().at(0) == false ) {
 		// if first bit is zero, then address is class A.
 		return IPV4_ADDRESS_CLASS_A;		
 	}
-	else if ( this->GetFirstOctetBinary().at(1) == false ) {
+	else if ( this->GetFirstOctetBitset().at(1) == false ) {
 		// if second bit is zero, then address is class B.
 		return IPV4_ADDRESS_CLASS_B;		
 	}
-	else if ( this->GetFirstOctetBinary().at(2) == false ) {
+	else if ( this->GetFirstOctetBitset().at(2) == false ) {
 		// if third bit is zero, then address is class C.
 		return IPV4_ADDRESS_CLASS_C;		
 	}
-	else if ( this->GetFirstOctetBinary().at(3) == false ) {
+	else if ( this->GetFirstOctetBitset().at(3) == false ) {
 		// if fourth bit is zero, then address is class D.
 		return IPV4_ADDRESS_CLASS_A;		
 	}	
-	else if ( this->GetFirstOctetBinary().at(4) == false ) {
+	else if ( this->GetFirstOctetBitset().at(4) == false ) {
 		// if fifth bit is zero, then address is class E.
 		return  IPV4_ADDRESS_CLASS_A;		
 	}

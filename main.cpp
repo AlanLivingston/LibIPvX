@@ -15,7 +15,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include "stdafx.h"
 #include <stdio.h>
 #include <string>
@@ -34,14 +33,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	// assigned by the constructor to address->netmask and is overwritten when you specify
 	// a subnet mask manually.
 
-	assert( address->GetDefaultSubnetMask() == IPV4_CLASS_A_DEFAULT_SUBNET_MASK);
-	std::cout << "Default subnet mask: " << address->GetDefaultSubnetMask() << std::endl;
+	assert( address->netmask == IPV4_CLASS_A_DEFAULT_SUBNET_MASK);
+	std::cout << "Default subnet mask: " << address->GetDefaultNetmask() << std::endl;
 
 	// Now set a subnet netmask - this replaces the default subnet mask.
 	address->netmask = "255.255.128.0";
 
 	// Display the binary of the IP's address space.
-	std::cout << "Address binary: " << address->GetAddressBinary() << std::endl;
+	std::cout << "Address binary: " << address->GetAddressBitset() << std::endl;
 
 	// Display the subnet address.
 	assert( address->GetSubnetAddress() == "10.1.0.0" );
@@ -80,28 +79,28 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	// Get the first Octet in binary.
-	std::cout << "First octet's binary: " << address->GetFirstOctetBinary() << std::endl;
+	std::cout << "First octet's binary: " << address->GetFirstOctetBitset() << std::endl;
 
 	// Get the first Octet in decimal.
 	assert( address->GetFirstOctetDecimal() == 10);
 	std::cout << "First octet's decimal: " << address->GetFirstOctetDecimal() << std::endl;
 
 	// Get the second Octet in binary.
-	std::cout << "Second octet's binary: " << address->GetSecondOctetBinary() << std::endl;
+	std::cout << "Second octet's binary: " << address->GetSecondOctetBitset() << std::endl;
 
 	// Get the second Octet in decimal.
 	assert( address->GetSecondOctetDecimal() == 1);
 	std::cout << "Second octet's decimal: " << address->GetSecondOctetDecimal() << std::endl;
 
 	// Get the third Octet in binary.
-	std::cout << "Third octet's binary: " << address->GetThirdOctetBinary() << std::endl;
+	std::cout << "Third octet's binary: " << address->GetThirdOctetBitset() << std::endl;
 
 	// Get the third Octet in decimal.
 	assert( address->GetThirdOctetDecimal() == 5);
 	std::cout << "Third octet's decimal: " << address->GetThirdOctetDecimal() << std::endl;
 
 	// Get the fourth Octet in binary.	
-	std::cout << "Fourth octet's binary: " << address->GetFourthOctetBinary() << std::endl;
+	std::cout << "Fourth octet's binary: " << address->GetFourthOctetBitset() << std::endl;
 
 	// Get the fourth Octet in decimal.
 	assert( address->GetFourthOctetDecimal() == 2);
