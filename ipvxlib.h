@@ -41,7 +41,7 @@ class IP4Address
 public:
 	IP4Address(std::string _address) {
 		this->bitset = this->ConvertIPv4StringToSTLBitset(_address);
-		this->netmask = this->GetDefaultSubnetMask();
+		this->netmask = this->GetDefaultNetmask();
 	}
 
 	~IP4Address(void) {
@@ -60,7 +60,7 @@ public:
 	std::bitset<IPV4_ADDRESS_LENGTH>	GetBroadcastAddressBitset();
 	std::string							GetBroadcastAddress();	
 	char								GetClass();	
-	std::string							GetDefaultSubnetMask();
+	std::string							GetDefaultNetmask();
 	std::bitset<IPV4_OCTET_LENGTH>		GetFirstOctetBitset();
 	int									GetFirstOctetDecimal();	
 	std::bitset<IPV4_OCTET_LENGTH>		GetFourthOctetBitset();
