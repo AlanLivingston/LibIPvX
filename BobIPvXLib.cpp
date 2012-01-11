@@ -35,11 +35,26 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetAddressBitset() {
 }
 
 bool IP4Address::IsSubnetted() {
-	if ( (this->GetNetmaskBitLength() % 8) == 0 ) {
-		return true;
+	
+	// Determine if we're subnetting by comparing the number of bits
+	// in the netmask to the address class.
+
+	if (( this->GetClass() == IPV4_ADDRESS_CLASS_A ) &&
+		( this->GetNetmaskBitLength() == IPV4_CLASS_A_DEFAULT_SUBNET_LENGTH )) {
+		return false;
 	}
 
-	return false;
+	if (( this->GetClass() == IPV4_ADDRESS_CLASS_B ) &&
+		( this->GetNetmaskBitLength() == IPV4_CLASS_B_DEFAULT_SUBNET_LENGTH )) {
+		return false;
+	}
+
+	if (( this->GetClass() == IPV4_ADDRESS_CLASS_C ) &&
+		( this->GetNetmaskBitLength() == IPV4_CLASS_C_DEFAULT_SUBNET_LENGTH )) {
+		return false;
+	}
+
+	return true;
 }
 
 std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::ConvertIPv4StringToSTLBitset(const std::string _address) {

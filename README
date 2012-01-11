@@ -17,13 +17,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 LibIPvX is a development library that provide C++ programmers with
 IPv4 and IPv6 bitwise arithmetic, subnet calculation, instantiation of IP objects, range management 
-and with no external dependencies needed using the power of C++11.
+and with no external dependencies needed ( just the requirements of C++11 ).
 
 This library is 100% free for you to use respecting the constraints of the GNU General Public License.
 
 We're well on the way to delivering the pre-alpha version of this library in
 the coming weeks. The bleeding edge code is available if you're interested in having a look, and the
-library doesn't yet refer to an actual library (DLL) in the true sense of the word, and for the moment
-is just a few of classes.
+library doesn't yet refer to an actual library (DLL) in the true sense of the word, and for the moment is just a few of classes.
 
 If you're interested in how the library works, look at the smoketests contained in main.cpp.
