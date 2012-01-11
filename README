@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  |        |   |_____]   |   |_____]  \  /   \___/ 
  |_____ __|__ |_____] __|__ |         \/   _/   \_
  
- -------------------------------------------------------------------------
+-------------------------------------------------------------------------
 
 LibIPvX is a development library that provide C++ programmers with IPv4 and IPv6 bitwise arithmetic, subnetting, native IP objects, address management and just with the requirements of C++11, no external dependencies are needed.
 
