@@ -96,6 +96,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 	std::cout << std::endl;
 	
+	// Get the first address available in the current range.
+	std::auto_ptr<IP4Address> _firstAddr = address->GetFirstAddress();
+	std::cout << "First address in current range: " <<_firstAddr->GetAddressString() << std::endl;
+	std::cout << std::endl;
+
+	// Get the last address available in the current range.
+	std::auto_ptr<IP4Address> _lastAddr = address->GetLastAddress();
+	std::cout << "Last address in current range: " <<_lastAddr->GetAddressString() << std::endl;
+	std::cout << std::endl;
+
 	// Get the address as formatted decimal string.
 	assert( address->GetAddressString() == "10.1.5.2" );
 	std::cout << "IP: " << address->GetAddressString() << std::endl;
