@@ -324,3 +324,7 @@ char IP4Address::GetClass() {
 	
 	return 'X'; // yelp! nothing can possible (sic) go wrong...that's the first thing that's gone wrong.
 }
+
+std::string	IP4Address::GetNetmaskAddressString() {
+	return this->netmask;
+}

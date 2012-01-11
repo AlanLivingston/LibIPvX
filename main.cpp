@@ -21,7 +21,6 @@
 // This program smoke tests the LibIPvX objects.
 int _tmain(int argc, _TCHAR* argv[])
 {
-
 	std::cout << "        _____ ______  _____  _____  _    _ _     _" << std::endl; 
 	std::cout << " |        |   |_____]   |   |_____]  \\  /   \\___/ " << std::endl; 
 	std::cout << " |_____ __|__ |_____] __|__ |         \\/   _/   \\_" << std::endl; 
@@ -39,20 +38,30 @@ int _tmain(int argc, _TCHAR* argv[])
 	// assigned by the constructor to address->netmask and is overwritten when you specify
 	// a subnet mask manually.
 
-	assert( address->netmask == IPV4_CLASS_A_DEFAULT_SUBNET_MASK);
+	assert( address->GetNetmaskAddressString() == IPV4_CLASS_A_DEFAULT_SUBNET_MASK);
 	std::cout << "Default subnet mask: " << address->GetDefaultNetmask() << std::endl;
 	std::cout << std::endl;
 	
 	// We're using a default netmask, therefore we're not subnetting.
 	assert( !address->IsSubnetted() );
 	if ( !address->IsSubnetted() ) {
-		std::cout << "IP Address: " << address->GetAddressString() << " is not subnetted." << std::endl;
+		std::cout << "IP Address: " << address->GetAddressString() << " with mask " << address->netmask << " is not subnetted." << std::endl;
 	}
 	std::cout << std::endl;
 	
 	// Now set a subnet netmask - this replaces the default subnet mask.
+	std::cout << "Applying mask " << address->netmask << std::endl;
 	address->netmask = "255.255.128.0";
-	
+	assert(address->GetNetmaskAddressString() == "255.255.128.0");
+	std::cout << std::endl;
+
+	// We're not using a default netmask, therefore we're subnetting.
+	assert( address->IsSubnetted() );
+	if ( address->IsSubnetted() ) {
+		std::cout << "IP Address: " << address->GetAddressString() << " with mask " << address->netmask << " is subnetted." << std::endl;
+	}
+	std::cout << std::endl;
+
 	// Display the binary of the IP's address space.
 	std::cout << "Address binary: " << address->GetAddressBitset() << std::endl;
 	std::cout << std::endl;
