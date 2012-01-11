@@ -68,8 +68,10 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::ConvertIPv4StringToSTLBitset(const 
 	{
 		// loop to access each bit in indexed octet.
 		for ( size_t b = 0; b < IPV4_OCTET_LENGTH; b++ ) {
+			
 			// Set bit to bool value at same index within the _address string
-			addrBits.set((i * 8) + b, (bool) _binString.at( (i * 8) + b ));
+			bool bit = (_binString.at( (i * 8) + b ) == 1) ? true : false;
+			addrBits.set((i * 8) + b, bit);
 		}
 	}
 
