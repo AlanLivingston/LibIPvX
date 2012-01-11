@@ -30,7 +30,7 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBitwiseBooleanANDResult(const st
 }
 
 std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetAddressBinary() {
-	return this->addrSpace;
+	return this->bitset;
 }
 
 bool IP4Address::IsSubnetted() {
@@ -181,15 +181,15 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetSubnetAddressBinary() {
 }
 
 std::string IP4Address::GetAddressString() {
-	return this->GetAddressStringFromBinary(this->addrSpace);
+	return this->GetAddressStringFromBinary(this->bitset);
 }
 
 bool IP4Address::IsBroadcastAddress() {
-	return ( this->GetBroadcastAddressBinary() == this->addrSpace ) ? true : false;	
+	return ( this->GetBroadcastAddressBinary() == this->bitset ) ? true : false;	
 }
 
 bool IP4Address::IsSubnetAddress() {
-	return ( this->GetSubnetAddressBinary() == this->addrSpace ) ? true : false;
+	return ( this->GetSubnetAddressBinary() == this->bitset ) ? true : false;
 }
 
 int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet) {
@@ -214,7 +214,7 @@ std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetOctetBinaryByIndex(const int index
 	std::bitset<IPV4_OCTET_LENGTH> bitset;
 
 	for ( size_t i = IPV4_FIRST_OCTET_INDEX; i < IPV4_OCTET_LENGTH; i++ ) {
-		bitset.set(i, this->addrSpace.at( ( indexOfOctet * 8 ) + i) );
+		bitset.set(i, this->bitset.at( ( indexOfOctet * 8 ) + i) );
 	}
 
 	return bitset;
@@ -258,53 +258,6 @@ std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetThirdOctetBinary() {
 std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetFourthOctetBinary() {
 
 	return this->GetOctetBinaryByIndex(IPV4_FOURTH_OCTET_INDEX);
-}
-
-std::auto_ptr<IP4Address> IP4Address::GetProceedingIP4AddressInRange() {
-	
-	std::auto_ptr<IP4Address> _addr(new IP4Address(this->GetAddressString()));
-	_addr->netmask = this->netmask;	
-
-	_addr->IncrementOctetDecimal(IPV4_FOURTH_OCTET_INDEX);
-
-	return _addr;
-}
-
-/*
-
-	Returns true if there is an address available at an increment above the
-	current address in current subnet.
-
-*/
-bool IP4Address::HasNext() {
-
-	// We need a copy of the current object.
-	// if we're able to succesfully increment the address, then 
-	// there's an address above this one available in the range.
-
-	std::auto_ptr<IP4Address> _addr(new IP4Address( this->GetAddressString() ));
-	_addr->netmask = this->netmask;
-
-
-	// If the increment isn't successful, there is no address available.
-	if ( !_addr->IncrementOctet(IPV4_FOURTH_OCTET_INDEX) ) {
-		return false;
-	}
-
-	return true;
-}
-
-bool IP4Address::IncrementOctet(const int _indexOfOctet) {
-
-	// If we're already at the top of the subnet, return false.
-
-	if ( this->IsSubnetAddress() ) {
-		return false;
-	}
-
-
-
-	return true;
 }
 
 std::string IP4Address::GetDefaultSubnetMask() {

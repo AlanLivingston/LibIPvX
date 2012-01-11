@@ -25,14 +25,16 @@
 
 #include "ipvxlib.h"
 
-// This program smoke tests LibIPvX. 
-
+// This program smoke tests the LibIPvX objects.
 int _tmain(int argc, _TCHAR* argv[])
 {
 	std::auto_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
 
-	// Check that the default subnet mask has been assigned.
-	assert( address->GetDefaultSubnetMask() == "255.255.255.0");
+	// Check that the default netmask has been assigned - this value is automatically
+	// assigned by the constructor to address->netmask and is overwritten when you specify
+	// a subnet mask manually.
+
+	assert( address->GetDefaultSubnetMask() == IPV4_CLASS_A_DEFAULT_SUBNET_MASK);
 	std::cout << "Default subnet mask: " << address->GetDefaultSubnetMask() << std::endl;
 
 	// Now set a subnet netmask - this replaces the default subnet mask.
@@ -108,12 +110,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	// Get the IP Address's class.
 	assert( address->GetClass() == IPV4_ADDRESS_CLASS_A );
 	std::cout << "Address's class is: " << address->GetClass() << std::endl;
-
-	while (address->HasNext()) {		
-		std::cout << address->GetAddressString() << std::endl;	
-		address = std::move(address->GetProceedingIP4AddressInRange());		
-	}
-	 
+	
 	return 0;
 }
 

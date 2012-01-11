@@ -40,14 +40,14 @@ class IP4Address
 {
 public:
 	IP4Address(std::string _address) {
-		this->addrSpace = this->ConvertIPv4StringToSTLBitset(_address);
+		this->bitset = this->ConvertIPv4StringToSTLBitset(_address);
 		this->netmask = this->GetDefaultSubnetMask();
 	}
 
 	~IP4Address(void) {
 	}
 
-	std::bitset<IPV4_ADDRESS_LENGTH>	addrSpace;
+	std::bitset<IPV4_ADDRESS_LENGTH>	bitset;
 	std::string							netmask;
 	std::bitset<IPV4_ADDRESS_LENGTH>	ConvertIPv4StringToSTLBitset(const std::string _address);		
 	std::bitset<IPV4_OCTET_LENGTH>		ConvertSingleOctetFromDecimalToSTLBitset(const int _OctetDecimal);
@@ -76,10 +76,8 @@ public:
 	std::bitset<IPV4_OCTET_LENGTH>		GetSecondOctetBinary();
 	int									GetThirdOctetDecimal();
 	std::bitset<IPV4_OCTET_LENGTH>		GetThirdOctetBinary();
-	bool								IncrementOctet(int indexOfOctet);
 	bool								IsBroadcastAddress();
 	bool								IsSubnetAddress();		
-	bool								HasNext();
 	bool								IsSubnetted();
 
 private:
