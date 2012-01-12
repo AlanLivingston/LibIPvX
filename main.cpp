@@ -168,7 +168,12 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	// Get the IP Address's class.
 	assert( address->GetClass() == IPV4_ADDRESS_CLASS_A );
-	std::cout << "Address's class is: " << address->GetClass() << std::endl;
+	std::cout << "Address class is: " << address->GetClass() << std::endl;
+	std::cout << std::endl;
+
+	// Get bit length of host portion of the netmask.
+	assert( address->GetNetmaskHostPortionBitLength() == 15 );
+	std::cout << "Bit length of host portion of netmask is: " << address->GetNetmaskHostPortionBitLength()  << std::endl;
 	
 	std::cout << std::endl;
 	std::cout << std::endl;
