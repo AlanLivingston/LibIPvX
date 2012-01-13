@@ -6,6 +6,7 @@
 #pragma once
 
 #define IPV4_ADDRESS_LENGTH 32
+#define IPV4_SUBNET_LENGTH 32
 #define IPV4_OCTET_LENGTH 8
 #define IPV4_OCTET_COUNT 4
 #define IPV4_FIRST_OCTET_INDEX 0
