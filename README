@@ -27,3 +27,5 @@ This library is 100% free for you to use respecting the constraints of the GNU G
 We're well on the way to delivering the alpha of this library in the coming weeks. The bleeding edge code is available if you're keen to have a look, but for the moment LibIPvX doesn't yet refer to an actual link library (DLL) executable, and is for the moment only a series of classes.
 
 In lieu of the documentation, if you're interested in how the library works, look at the smoketests in main.cpp, but don't worry, the official documentation, website and support forums are on the roadmap for the first release!
+
+Prior to the first library release, be aware that method, class and variable names may change and as such code should be place in a production environment because backwards compatiability cannot be assured between subsequent code changes.

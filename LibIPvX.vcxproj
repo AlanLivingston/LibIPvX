@@ -60,11 +60,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BobIPvXLib.cpp" />
+    <ClCompile Include="IPv4Address.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IPv4Address.h" />
     <ClInclude Include="ipvxlib.h" />
+    <ClInclude Include="ipvxstatic.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

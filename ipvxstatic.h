@@ -1,16 +1,12 @@
-
 #pragma once
 
-#include "ipvxlib.h"
+#include "stdafx.h"
 
-class IPvXStatic {
-public:
-	static std::bitset<IPV4_ADDRESS_LENGTH>		IPvXStatic::ConvertIPv4StringToSTLBitset(const std::string _address);		
-	static std::bitset<IPV4_OCTET_LENGTH>		IPvXStatic::ConvertSingleOctetFromDecimalToSTLBitset(const int _OctetDecimal);
-	std::string									ConvertDecimalIntegerToEightBitBinaryString(const int _integer);
-};	
+static std::bitset<IPV4_ADDRESS_LENGTH>		ConvertIPv4StringToSTLBitset(const std::string _address);		
+static std::bitset<IPV4_OCTET_LENGTH>		ConvertSingleOctetFromDecimalToSTLBitset(const int _OctetDecimal);
+static std::string							ConvertDecimalIntegerToEightBitBinaryString(const int _integer);
 
-std::bitset<IPV4_ADDRESS_LENGTH>		IPvXStatic::ConvertIPv4StringToSTLBitset(const std::string _address)  {
+std::bitset<IPV4_ADDRESS_LENGTH> ConvertIPv4StringToSTLBitset(const std::string _address)  {
 	// Index of each peroid in address string.
 	// expected format, dec.dec.dec.dec;
 	size_t _dot1 = _address.find(".");
@@ -24,10 +20,10 @@ std::bitset<IPV4_ADDRESS_LENGTH>		IPvXStatic::ConvertIPv4StringToSTLBitset(const
 
 	// convert each octet's decimal value to binary and save in string.	
 	std::string _binString = "";
-	_binString = IPvXStatic::ConvertDecimalIntegerToEightBitBinaryString(octet1);
-	_binString += IPvXStatic::ConvertDecimalIntegerToEightBitBinaryString(octet2);
-	_binString += IPvXStatic::ConvertDecimalIntegerToEightBitBinaryString(octet3);
-	_binString += IPvXStatic::ConvertDecimalIntegerToEightBitBinaryString(octet4);
+	_binString = ConvertDecimalIntegerToEightBitBinaryString(octet1);
+	_binString += ConvertDecimalIntegerToEightBitBinaryString(octet2);
+	_binString += ConvertDecimalIntegerToEightBitBinaryString(octet3);
+	_binString += ConvertDecimalIntegerToEightBitBinaryString(octet4);
 
 	std::bitset<IPV4_ADDRESS_LENGTH> addrBits;
 
@@ -46,10 +42,10 @@ std::bitset<IPV4_ADDRESS_LENGTH>		IPvXStatic::ConvertIPv4StringToSTLBitset(const
 	return addrBits;
 }
 
-std::bitset<IPV4_OCTET_LENGTH>			IPvXStatic::ConvertSingleOctetFromDecimalToSTLBitset(const int _OctetDecimal){
+std::bitset<IPV4_OCTET_LENGTH> ConvertSingleOctetFromDecimalToSTLBitset(const int _OctetDecimal){
 	std::bitset<IPV4_OCTET_LENGTH> octetBitset;
 	
-	std::string octetString = this->ConvertDecimalIntegerToEightBitBinaryString(_OctetDecimal);
+	std::string octetString = ConvertDecimalIntegerToEightBitBinaryString(_OctetDecimal);
 
 	// loop to access each bit in indexed octet.
 	for ( size_t b = 0; b < IPV4_OCTET_LENGTH; b++ ) {
@@ -61,9 +57,10 @@ std::bitset<IPV4_OCTET_LENGTH>			IPvXStatic::ConvertSingleOctetFromDecimalToSTLB
 	return octetBitset;
 }
 
-std::string IPvXStatic::ConvertDecimalIntegerToEightBitBinaryString(const int _integer) {
+std::string ConvertDecimalIntegerToEightBitBinaryString(const int _integer) {
 	std::string _binaryString;
 	int tempInt = _integer;
+
 	while ( tempInt > 0 ) {
 		_binaryString += tempInt % 2;
 		tempInt /= 2;

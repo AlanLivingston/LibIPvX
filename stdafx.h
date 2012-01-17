@@ -5,6 +5,18 @@
 
 #pragma once
 
+#include <stdio.h>
+#include <tchar.h>
+#include <string>
+#include <iostream>
+#include <assert.h>
+#include <memory>
+#include <algorithm>
+#include <sstream>
+#include <bitset>
+
+// TODO: reference additional headers your program requires here
+
 #define IPV4_ADDRESS_LENGTH 32
 #define IPV4_SUBNET_LENGTH 32
 #define IPV4_OCTET_LENGTH 8
@@ -25,21 +37,3 @@
 #define IPV4_CLASS_A_DEFAULT_SUBNET_LENGTH 8
 #define IPV4_CLASS_B_DEFAULT_SUBNET_LENGTH 16
 #define IPV4_CLASS_C_DEFAULT_SUBNET_LENGTH 24
-
-#include <stdio.h>
-#include <tchar.h>
-#include <stdio.h>
-#include <string>
-#include <iostream>
-#include <assert.h>
-#include <memory>
-#include <iostream>
-#include <algorithm>
-#include <sstream>
-#include <string>
-#include <bitset>
-#include <math.h>
-#include <memory>
-
-
-// TODO: reference additional headers your program requires here

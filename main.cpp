@@ -15,7 +15,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "stdafx.h"
 #include "ipvxlib.h"
 
 // This program smoke tests the LibIPvX library.
@@ -32,7 +31,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::cout << "***************************" << std::endl;
 	std::cout << std::endl;
 
-	std::auto_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
+	std::unique_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
 
 	// Check that the default netmask has been assigned - this value is automatically
 	// assigned by the constructor to address->netmask and is overwritten when you specify
@@ -174,12 +173,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	// Get bit length of host portion of the netmask.
 	assert( address->GetNetmaskHostPortionBitLength() == 15 );
 	std::cout << "Bit length of host portion of netmask is: " << address->GetNetmaskHostPortionBitLength()  << std::endl;
-	
+
+
 	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << "***************************" << std::endl;
 	std::cout << "All tests were successful." << std::endl;
 	std::cout << "***************************" << std::endl;
+
 
 	return 0;
 }
