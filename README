@@ -28,4 +28,4 @@ We're well on the way to delivering the alpha of this library in the coming week
 
 In lieu of the documentation, if you're interested in how the library works, look at the smoketests in main.cpp, but don't worry, the official documentation, website and support forums are on the roadmap for the first release!
 
-Prior to the first library release, be aware that method, class and variable names may change and as such code should be place in a production environment because backwards compatiability cannot be assured between subsequent code changes.
+Prior to the first library release, be aware that method, class and variable names may change and as such code shouldn't be placed inside a production environment as backwards compatiability cannot be assured between subsequent code changes up until the first release.
