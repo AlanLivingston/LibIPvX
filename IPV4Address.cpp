@@ -1,5 +1,3 @@
-#pragma once
-
 /*
   Copyright (C) 2012  Daniel Neil Hodder
 
@@ -17,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "IPv4Address.h"
+#include "IPV4Address.h"
 
 int IP4Address::GetNetmaskBitLength() {
 	return this->GetNetmaskBitset().count();
@@ -304,7 +302,7 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetInverseNetmaskBitset() {
 	return bitset;
 }
 
-std::auto_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {
+std::shared_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {
 	
 	// Get the bitset of the subnet address.
 	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = this->GetSubnetAddressBitset();
@@ -315,12 +313,12 @@ std::auto_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {
 	// Get the address string.
 	std::string _addressString = this->GetAddressStringFromBitset(_bitset);
 
-	std::auto_ptr<IP4Address> _addr(new IP4Address(_addressString));
+	std::shared_ptr<IP4Address> _addr(new IP4Address(_addressString));
 	_addr->netmask = this ->GetNetmaskAddressString();
 	return _addr;
 }
 
-std::auto_ptr<IP4Address> IP4Address::GetLastAddressInRange() {
+std::shared_ptr<IP4Address> IP4Address::GetLastAddressInRange() {
 	// Get the bitset of the broadcast address.
 	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = this->GetBroadcastAddressBitset();
 
@@ -330,7 +328,7 @@ std::auto_ptr<IP4Address> IP4Address::GetLastAddressInRange() {
 	// Get the address string.
 	std::string _addressString = this->GetAddressStringFromBitset(_bitset);
 
-	std::auto_ptr<IP4Address> _addr(new IP4Address(_addressString));
+	std::shared_ptr<IP4Address> _addr(new IP4Address(_addressString));
 	_addr->netmask = this ->GetNetmaskAddressString();
 	return _addr;
 }

@@ -46,8 +46,8 @@ public:
 	bool					IsBroadcastAddress();
 	bool					IsSubnetAddress();		
 	bool					IsSubnetted();
-	std::auto_ptr<IP4Address>		GetFirstAddressInRange();
-	std::auto_ptr<IP4Address>		GetLastAddressInRange();
+	std::shared_ptr<IP4Address>		GetFirstAddressInRange();
+	std::shared_ptr<IP4Address>		GetLastAddressInRange();
 	int					GetNetmaskHostPortionBitLength();
 };
  /*******/	
