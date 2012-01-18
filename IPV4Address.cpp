@@ -1,4 +1,4 @@
-#pragma once
+
 
 /*
   Copyright (C) 2012  Daniel Neil Hodder
@@ -17,7 +17,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "IPv4Address.h"
+#include "IPV4Address.h"
 
 int IP4Address::GetNetmaskBitLength() {
 	return this->GetNetmaskBitset().count();
