@@ -196,13 +196,13 @@ int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet) {
 
 std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetOctetBinaryByIndex(const int indexOfOctet) {
 
-	std::bitset<IPV4_OCTET_LENGTH> bitset;
+	std::bitset<IPV4_OCTET_LENGTH> _bitset;
 
 	for ( size_t i = IPV4_FIRST_OCTET_INDEX; i < IPV4_OCTET_LENGTH; i++ ) {
-		bitset.set(i, this->bitset[ ( indexOfOctet * 8 ) + i] );
+		_bitset.set(i, this->bitset[ ( indexOfOctet * 8 ) + i] );
 	}
 
-	return bitset;
+	return _bitset;
 }
 
 int	IP4Address::GetFirstOctetDecimal() {

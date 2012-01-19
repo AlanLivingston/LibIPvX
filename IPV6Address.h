@@ -4,14 +4,14 @@
 #include "stdafx.h"
 #include "ipvxstatic.h"
 
-class IPV6Address{
+class IP6Address{
 	public:
-		IPV6Address(std::string) {
+		IP6Address(std::string) {
 			this->bitset = ConvertIPv6StringToSTLBitset(_address);
 			this->netmask = this->GetDefaultNetMask();
 		}
 
-		~IPV6Address(){}
+		~IP6Address(){}
 
 
 		std::string				GetAddressString();
@@ -33,7 +33,8 @@ class IPV6Address{
 		std::bitset<IPV6_BLOCK_SIZE>		GetSeventhBlockDecimal();
 		int					GetEigthBlockDecimal();
 		std::bitset<IPV6_BLOCK_SIZE>		GetEigthBlockBitset();
-		
+		int					GetBlockDecimalByIndex(int);	
+		std::bitset<IPV6_BLOCK_SIZE>		GetBlockBitsetByIndex(int);
 	private:
 		std::bitset<IPV6_ADDRESS_LENGTH>	bitset;
 		std::string				netmask;
