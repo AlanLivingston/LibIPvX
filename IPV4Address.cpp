@@ -304,7 +304,7 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetInverseNetmaskBitset() {
 	return bitset;
 }
 
-std::auto_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {
+std::unique_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {
 	
 	// Get the bitset of the subnet address.
 	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = this->GetSubnetAddressBitset();
@@ -315,12 +315,12 @@ std::auto_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {
 	// Get the address string.
 	std::string _addressString = this->GetAddressStringFromBitset(_bitset);
 
-	std::auto_ptr<IP4Address> _addr(new IP4Address(_addressString));
+	std::unique_ptr<IP4Address> _addr(new IP4Address(_addressString));
 	_addr->netmask = this ->GetNetmaskAddressString();
 	return _addr;
 }
 
-std::auto_ptr<IP4Address> IP4Address::GetLastAddressInRange() {
+std::unique_ptr<IP4Address> IP4Address::GetLastAddressInRange() {
 	// Get the bitset of the broadcast address.
 	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = this->GetBroadcastAddressBitset();
 
@@ -330,7 +330,7 @@ std::auto_ptr<IP4Address> IP4Address::GetLastAddressInRange() {
 	// Get the address string.
 	std::string _addressString = this->GetAddressStringFromBitset(_bitset);
 
-	std::auto_ptr<IP4Address> _addr(new IP4Address(_addressString));
+	std::unique_ptr<IP4Address> _addr(new IP4Address(_addressString));
 	_addr->netmask = this ->GetNetmaskAddressString();
 	return _addr;
 }
