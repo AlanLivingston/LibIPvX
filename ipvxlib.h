@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IPVXLIB_H
+#define IPVXLIB_H
 
 /*
   Copyright (C) 2012  Daniel Neil Hodder
@@ -18,5 +19,7 @@
 */
 
 
-#include "IPv4Address.h"
+#include "IPV4Address.h"
 #include "ipvxstatic.h"
+
+#endif

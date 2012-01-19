@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IPVXSTATIC_H
+#define IPVXSTATIC_H
 
 #include "stdafx.h"
 
@@ -80,3 +81,7 @@ std::string ConvertDecimalIntegerToEightBitBinaryString(const int _integer) {
 
 	return _binaryString;
 }
+
+
+
+#endif

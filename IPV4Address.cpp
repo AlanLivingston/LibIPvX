@@ -1,4 +1,4 @@
-#pragma once
+
 
 /*
   Copyright (C) 2012  Daniel Neil Hodder
@@ -17,7 +17,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "IPv4Address.h"
+#include "IPV4Address.h"
 
 int IP4Address::GetNetmaskBitLength() {
 	return this->GetNetmaskBitset().count();
@@ -79,7 +79,7 @@ std::string IP4Address::GetAddressStringFromBitset(const std::bitset<IPV4_ADDRES
 
 		for ( int b = 0; b < IPV4_OCTET_LENGTH; b++) {
 
-			if ( _bitset.at( ( 8 * o) + b) == 1) {
+			if ( _bitset[( 8 * o) + b] == 1 && ((8 * o) + b) < _bitset.size()  ) {
 				octet += val;
 			}
 
@@ -185,7 +185,7 @@ int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet) {
 	int max = 128;
 
 	for ( size_t i = 0; i < IPV4_OCTET_LENGTH; i++ ) {
-		if ( bitset.at(i) == 1 ) {
+		if ( bitset[i] == 1 && i < bitset.size() ) {
 			octetDecimal += max;			
 		}
 		max /= 2;
@@ -199,7 +199,7 @@ std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetOctetBinaryByIndex(const int index
 	std::bitset<IPV4_OCTET_LENGTH> bitset;
 
 	for ( size_t i = IPV4_FIRST_OCTET_INDEX; i < IPV4_OCTET_LENGTH; i++ ) {
-		bitset.set(i, this->bitset.at( ( indexOfOctet * 8 ) + i) );
+		bitset.set(i, this->bitset[ ( indexOfOctet * 8 ) + i] );
 	}
 
 	return bitset;
@@ -265,23 +265,23 @@ char IP4Address::GetClass() {
 	// Check the first octet for the whereabouts of the zero bit
 	// as this is indicative the class.
 		
-	if ( this->GetFirstOctetBitset().at(0) == false ) {
+	if ( this->GetFirstOctetBitset()[0] == false ) {
 		// if first bit is zero, then address is class A.
 		return IPV4_ADDRESS_CLASS_A;		
 	}
-	else if ( this->GetFirstOctetBitset().at(1) == false ) {
+	else if ( this->GetFirstOctetBitset()[1] == false ) {
 		// if second bit is zero, then address is class B.
 		return IPV4_ADDRESS_CLASS_B;		
 	}
-	else if ( this->GetFirstOctetBitset().at(2) == false ) {
+	else if ( this->GetFirstOctetBitset()[2] == false ) {
 		// if third bit is zero, then address is class C.
 		return IPV4_ADDRESS_CLASS_C;		
 	}
-	else if ( this->GetFirstOctetBitset().at(3) == false ) {
+	else if ( this->GetFirstOctetBitset()[3] == false ) {
 		// if fourth bit is zero, then address is class D.
 		return IPV4_ADDRESS_CLASS_D;		
 	}	
-	else if ( this->GetFirstOctetBitset().at(4) == false ) {
+	else if ( this->GetFirstOctetBitset()[4] == false ) {
 		// if fifth bit is zero, then address is class E.
 		return  IPV4_ADDRESS_CLASS_E;		
 	}
