@@ -27,7 +27,7 @@ int main(int argc, wchar_t* argv[])
 
 	std::cout << std::endl;
 	std::cout << "***************************" << std::endl;
-	std::cout << "Starting smoke tests." << std::endl;
+	std::cout << "Starting LIBIPvX smoke tests." << std::endl;
 	std::cout << "***************************" << std::endl;
 	std::cout << std::endl;
 
@@ -38,6 +38,8 @@ int main(int argc, wchar_t* argv[])
 	// a subnet mask manually.
 
 	assert( address->GetNetmaskAddressString() == IPV4_CLASS_A_DEFAULT_SUBNET_MASK);
+
+	// As we haven't specified one, it's the default netmask of the address's class.
 	assert( address->GetNetmaskAddressString() == address->GetDefaultNetmask());
 	std::cout << "Default subnet mask: " << address->GetDefaultNetmask() << std::endl;
 	std::cout << std::endl;
@@ -96,13 +98,13 @@ int main(int argc, wchar_t* argv[])
 	std::cout << std::endl;
 	
 	// Get the first address available in the current range.
-	std::auto_ptr<IP4Address> _firstAddr = address->GetFirstAddressInRange();
+	std::unique_ptr<IP4Address> _firstAddr = address->GetFirstAddressInRange();
 	assert(_firstAddr->GetAddressString() == "10.1.0.1");
 	std::cout << "First address in current range: " <<_firstAddr->GetAddressString() << std::endl;
 	std::cout << std::endl;
 
 	// Get the last address available in the current range.
-	std::auto_ptr<IP4Address> _lastAddr = address->GetLastAddressInRange();
+	std::unique_ptr<IP4Address> _lastAddr = address->GetLastAddressInRange();
 	assert(_lastAddr->GetAddressString() == "10.1.127.254");
 	std::cout << "Last address in current range: " <<_lastAddr->GetAddressString() << std::endl;
 	std::cout << std::endl;

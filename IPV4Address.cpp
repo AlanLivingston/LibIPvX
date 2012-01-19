@@ -1,5 +1,3 @@
-
-
 /*
   Copyright (C) 2012  The FOSS Project 
 
@@ -62,7 +60,7 @@ std::string IP4Address::GetSubnetAddress() {
 	// Covert the std::string netmask into a bitset.
 	std::bitset<IPV4_ADDRESS_LENGTH> netmaskBits = ConvertIPv4StringToSTLBitset(this->netmask);
 
-	// Get the bitwise boolean AND.
+	// Get the bitwise boolean AND result of the netmask's bitset value.
 	std::bitset<IPV4_ADDRESS_LENGTH> bitwiseBoolANDbits = this->GetBitwiseBooleanANDResult(netmaskBits);	
 
 	// Return the decimal formatted string.
@@ -119,34 +117,85 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBitwiseBooleanORResult(const std
 	return this->GetAddressBitset() | bitset; 
 }
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBroadcastAddressBitset() {
+std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBroadcastAddressBitset() 
+/****f* LibIPvX/GetBroadcastAddressBitset()
+         * NAME
+         *       GetBroadcastAddressBitset() 
+         * DESCRIPTION
+         *       Returns the bitset of the broadcast address.
+         * PARAMETERS 
+         *       None        
+         * RETURN VALUE
+         *       std::bitset
+         * USAGE 
+         *       std::unique_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
+         *       std::cout << address->GetBroadcastAddressBitset() << std::endl;
+         *       // prints the bitset value of the broadcast address of ip address 10.1.5.2. 
+         * SOURCE
+         */
+{
 	return ConvertIPv4StringToSTLBitset(this->GetBroadcastAddress());
 }
+/*******/
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetSubnetAddressBitset() {
-		return ConvertIPv4StringToSTLBitset(this->GetSubnetAddress());
+std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetSubnetAddressBitset() 
+/****f* LibIPvX/GetSubnetAddressBitset()
+        * NAME
+        *       GetSubnetAddressBitset() 
+        * DESCRIPTION
+        *       Returns the bitset of the subnet address.
+        * PARAMETERS 
+        *       None        
+        * RETURN VALUE
+        *       std::bitset
+        * USAGE 
+        *       std::unique_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
+        *       std::cout << address->GetSubnetAddressBitset() << std::endl;
+        *       // prints the bitset value of the subnet address of ip address 10.1.5.2. 
+        * SOURCE
+        */
+{
+	return ConvertIPv4StringToSTLBitset(this->GetSubnetAddress());
 }
+/*******/
 
-std::string IP4Address::GetAddressString() {
+std::string IP4Address::GetAddressString() 
+/****f* LibIPvX/GetAddressString()
+        * NAME
+        *       GetAddressString() 
+        * DESCRIPTION
+        *       Returns the decimal representation of the address in dotted string format e.g. "10.1.1.1" 
+        * PARAMETERS 
+        * 	None        
+        * RETURN VALUE
+        *       std::string
+        * USAGE 
+        *       std::unique_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
+        *       std::cout << address->GetAddressString() << std::endl;
+	*	// prints "10.1.5.2"
+        * SOURCE
+        */
+{
 	return this->GetAddressStringFromBitset(this->bitset);
 }
+/*******/
 
 bool IP4Address::IsBroadcastAddress() 
 /****f* LibIPvX/IsBroadcastAddress()
 	* NAME
 	*	IsBroadcastAddress()
 	* DESCRIPTION
-	*	Determines if IPv4 address is a broadcast address.
+	*	Retusn true if the address is broadcast address of the range as per the netmask, false if not.
 	* PARAMETERS 
-	*	NONE	
+	*	None	
 	* RETURN VALUE
-	*	bool - true if IPv4 address is a broadcast address, false if not.
+	*	bool
 	* USAGE	
 	*	std::unique_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
-	*
 	*	if ( address->IsBroadcastAddress() ) {
 	*		std::cout << "Address is a broadcast." << std::endl;
 	*	}	
+ 	*	// prints "Address is a broadcast."
 	* SOURCE
 	*/
 {
@@ -159,17 +208,17 @@ bool IP4Address::IsSubnetAddress()
 	* NAME
 	*	IsSubnetAddress()
 	* DESCRIPTION
-	*	Determines if IPv4 address is a subnet address e.g. if it represents the 'wire'.
+	*	Returns true if the address is the subnet address of the range as per the netmask, false if not. 
 	* PARAMETERS 
 	*	NONE	
 	* RETURN VALUE
-	*	bool - true if IPv4 address is subnet address, false if not.
+	*	bool
 	* EXAMPLE	
 	*	std::unique_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
-	*
 	*	if ( address->IsSubnetted() ) {
-	*		std::cout << "Address is subnetted." << std::endl;
+	*		std::cout << "Address is subnet address of current range." << std::endl;
 	*	}	
+	*	// prints "Address is subnet address of current range." 
 	* SOURCE
 	*/
 {
@@ -177,7 +226,24 @@ bool IP4Address::IsSubnetAddress()
 }
  /*******/	
 
-int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet) {
+int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet) 
+/****f* LibIPvX/GetOctetDecimalByIndex(const int indexOfOctet)
+         * NAME
+         *       GetOctetDecimalByIndex(const int indexOfOctet) 
+         * DESCRIPTION
+         *       Gets the decimal value of the octet at the index specified by indexOfOctet.
+         * PARAMETERS 
+         *       The index (0..3) of the desired octet.    
+         * RETURN VALUE
+         *       int 
+         * USAGE 
+         *       std::unique_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
+         *
+         *       std::cout << "Decimal value of octet at index 0 is" << address->GetOctetDecimalByIndex(0) << std::endl;
+	 *	 prints: "10"
+         * SOURCE
+         */
+{
 	std::bitset<IPV4_OCTET_LENGTH> bitset = this->GetOctetBinaryByIndex(indexOfOctet);
 
 	int octetDecimal = 0;
@@ -193,6 +259,7 @@ int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet) {
 
 	return octetDecimal;
 }
+/*******/
 
 std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetOctetBinaryByIndex(const int indexOfOctet) {
 
@@ -286,7 +353,7 @@ char IP4Address::GetClass() {
 		return  IPV4_ADDRESS_CLASS_E;		
 	}
 	
-	return 'X'; // yelp! nothing can possible (sic) go wrong...that's the first thing that's gone wrong.
+	return 'X'; // yelp! nothing can possible (sic) go wrong...well gee, that's the first thing that's gone wrong.
 }
 
 std::string	IP4Address::GetNetmaskAddressString() {
@@ -304,7 +371,7 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetInverseNetmaskBitset() {
 	return bitset;
 }
 
-std::auto_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {
+std::unique_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {
 	
 	// Get the bitset of the subnet address.
 	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = this->GetSubnetAddressBitset();
@@ -315,12 +382,12 @@ std::auto_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {
 	// Get the address string.
 	std::string _addressString = this->GetAddressStringFromBitset(_bitset);
 
-	std::auto_ptr<IP4Address> _addr(new IP4Address(_addressString));
+	std::unique_ptr<IP4Address> _addr(new IP4Address(_addressString));
 	_addr->netmask = this ->GetNetmaskAddressString();
 	return _addr;
 }
 
-std::auto_ptr<IP4Address> IP4Address::GetLastAddressInRange() {
+std::unique_ptr<IP4Address> IP4Address::GetLastAddressInRange() {
 	// Get the bitset of the broadcast address.
 	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = this->GetBroadcastAddressBitset();
 
@@ -330,7 +397,7 @@ std::auto_ptr<IP4Address> IP4Address::GetLastAddressInRange() {
 	// Get the address string.
 	std::string _addressString = this->GetAddressStringFromBitset(_bitset);
 
-	std::auto_ptr<IP4Address> _addr(new IP4Address(_addressString));
+	std::unique_ptr<IP4Address> _addr(new IP4Address(_addressString));
 	_addr->netmask = this ->GetNetmaskAddressString();
 	return _addr;
 }

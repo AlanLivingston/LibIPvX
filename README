@@ -34,4 +34,5 @@ Prior to the first library release, be aware that method, class and variable nam
 
 API Documentation:
 
-To generate the API documentation, you will need to install Robodoc, once you've done that, run ./gen_api_doc.sh and look in the doc directory.
+To generate the LIBIPvX API documentation, you will need to install Robodoc, once you've done that, run ./gen_api_doc.sh and it will be generated to the doc directory.
+
