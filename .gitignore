@@ -1,0 +1,9 @@
+
+# Git ignore directories.
+
+doc/*
+
+# Git ignore files.
+
+*.o
+ipvxtest
