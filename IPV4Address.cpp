@@ -1,7 +1,7 @@
 
 
 /*
-  Copyright (C) 2012  The FOSS Project 
+  Copyright (C) 2012  The FOSS Project
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -83,7 +83,7 @@ std::string IP4Address::GetAddressStringFromBitset(const std::bitset<IPV4_ADDRES
 				octet += val;
 			}
 
-			val /= 2;
+			val = val >> 2;
 		}
 		
 		std::stringstream ss;
@@ -188,7 +188,7 @@ int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet) {
 		if ( bitset[i] == 1 && i < bitset.size() ) {
 			octetDecimal += max;			
 		}
-		max /= 2;
+		max = max >> 2;
 	}
 
 	return octetDecimal;
