@@ -7,7 +7,6 @@
 #define STDAFX_H
 
 #include <stdio.h>
-#include <tchar.h>
 #include <string>
 #include <iostream>
 #include <assert.h>
@@ -39,5 +38,7 @@
 #define IPV4_CLASS_B_DEFAULT_SUBNET_LENGTH 16
 #define IPV4_CLASS_C_DEFAULT_SUBNET_LENGTH 24
 
+
+#define IPV6_ADDRESS_LENGTH 128
 
 #endif

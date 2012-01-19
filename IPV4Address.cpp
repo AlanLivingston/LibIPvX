@@ -79,7 +79,7 @@ std::string IP4Address::GetAddressStringFromBitset(const std::bitset<IPV4_ADDRES
 
 		for ( int b = 0; b < IPV4_OCTET_LENGTH; b++) {
 
-			if ( _bitset[( 8 * o) + b] == 1 && ((8 * o) + b) < _bitset.size()  ) {
+			if ( _bitset[( IPV4_OCTET_LENGTH * o) + b] == 1 && ((8 * o) + b) < _bitset.size()  ) {
 				octet += val;
 			}
 
