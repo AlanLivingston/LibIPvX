@@ -18,7 +18,7 @@
 #include "ipvxlib.h"
 
 // This program smoke tests the LibIPvX library.
-int main(int argc, wchar_t* argv[])
+int main(int argc, char** argv)
 {
 	std::cout << "        _____ ______  _____  _____  _    _ _     _" << std::endl; 
 	std::cout << " |        |   |_____]   |   |_____]  \\  /   \\___/ " << std::endl; 
