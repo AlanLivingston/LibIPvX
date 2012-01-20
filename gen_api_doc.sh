@@ -24,4 +24,3 @@ echo "Generating LIBIPvX API documentation..";
 ${ROBODOC_BIN} --src ${SRC_DIR} --doc ${DOC_DIR} --multidoc --html --index --tell
 
 echo "Finished!";
-

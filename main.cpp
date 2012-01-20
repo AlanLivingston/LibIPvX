@@ -118,7 +118,13 @@ int main(int argc, char** argv)
 	assert( address->GetNetmaskBitLength() == 17 );
 	std::cout << "Netmask in CIDR notation: " << address->GetNetmaskBitLength() << std::endl;
 	std::cout << std::endl;
-	
+
+	// Get the netmask's bitset.
+	std::bitset<IPV4_ADDRESS_LENGTH> _netmaskBitset ( std::string("00000000000000011111111111111111")); 
+	assert( address->GetNetmaskBitset() == _netmaskBitset );
+	std::cout << "Netmask's bitset " << address->GetNetmaskBitset() << std::endl;	
+
+
 	// Get each Octet's binary using an array.
 	for ( size_t i = 0; i < IPV4_OCTET_COUNT; i++ ) {
 		std::cout << "Fetching Octet's binary in array at index " << i << ": " << address->GetOctetBinaryByIndex(i) << std::endl;

@@ -12,27 +12,26 @@ std::bitset<IPV6_ADDRESS_LENGTH> IP6Address::GetAddressBitset(){
 
 std::string IP6Address::GetStringFromBitset(const std::bitset<IPV6_ADDRESS_LENGTH> _bitset){
 	std::string _addressString;
-	for(int i = 0; i < IPV6_BLOCK_COUNT; i++){
-		unsigned int blockValue = 0;
+	for(int i = 0; i < IPV6_HECTET_COUNT; i++){
+		unsigned int hectetValue = 0;
 		int value = 32768;
 
-		for(int j = 0; j < IPV6_BLOCK_SIZE; j++){
-			if( _bitset[ (IPV6_BLOCK_SIZE * i) + j] == 1){
-				blockValue += value;
+		for(int j = 0; j < IPV6_HECTET_SIZE; j++){
+			if( _bitset[ (IPV6_HECTET_SIZE * i) + j] == 1){
+				hectetValue += value;
 			}
 
 			value = value >> 1;
 		}
 
 		std::stringstream ss;
-		ss << hex << blockValue;
+		ss << hex << hectetValue;
 		_addressString += ss.str();
 
 		if(i != 8){
 			_addressString += ":";
 		}
 	}
-
 
 	return _addressString;
 }
@@ -43,7 +42,7 @@ std::string IP6Address::GetStringFromBitset(const std::bitset<IPV6_ADDRESS_LENGT
 int IP6Address::GetBlockDecimalByIndex(int index){
 	int decimalValue = 0;
 	int value = 32768;
-	for(int i = 0; i < IPV6_BLOCK_SIZE; i++){
+	for(int i = 0; i < IPV6_HECTET_SIZE; i++){
 		if(this->bitset[i] == 1 && i < bitset.size()){
 			decimalValue += value;
 		}
@@ -52,10 +51,10 @@ int IP6Address::GetBlockDecimalByIndex(int index){
 	return decimalValue;
 }
 
-std::bitset<IPV6_BLOCK_SIZE> IP6Address::GetBlockBitsetByIndex(int index){
-	std::bitset<IPV6_BLOCK_SIZE> bitset;
-	for(int i = 0; i < IPV6_BLOCK_SIZE; i++){
-		_bitset.set(i, this->bitset[ (index * IPV6_BLOCK_SIZE) + i]);
+std::bitset<IPV6_HECTET_SIZE> IP6Address::GetBlockBitsetByIndex(int index){
+	std::bitset<IPV6_HECTET_SIZE> bitset;
+	for(int i = 0; i < IPV6_HECTET_SIZE; i++){
+		_bitset.set(i, this->bitset[ (index * IPV6_HECTET_SIZE) + i]);
 	}
 	return _bitset;
 } 

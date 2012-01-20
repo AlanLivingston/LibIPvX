@@ -3,7 +3,7 @@ CFLAGS=-c -Wall -std=c++0x
 
 all: complete
 
-complete: main.o IPV4Address.o ipvxstatic.o
+complete: main.o IPV4Address.o ipvxstatic.o 
 	$(CC) main.o IPV4Address.o ipvxstatic.o -o ipvxtest
 
 main.o: main.cpp

@@ -43,20 +43,24 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetNetmaskBitset()
          * NAME
          *       GetNetmaskBitset();
          * DESCRIPTION
-         *       Returns the length (the number of sequential 'on' bits) of the bitset of the netmask address.
+         *       Returns the bitset of the netmask address.
          * PARAMETERS
          *       None
          * RETURN VALUE
          *       std::bitset<IPV4_ADDRESS_LENGTH>
          * USAGE
          *       std::unique_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
-         *       std::cout << address->GetNetmaskBitset() << std::endl;
-         *       // Gets the netmask's bitset of 10.1.5.2 
+	 *	 address->netmask = "255.255.128.0";
+         *       std::cout << "Netmask's bitset is " << address->GetNetmaskBitset() << std::endl;
+         *       // Prints "Netmask's bitset is 00000000000000011111111111111111"
          * SOURCE
          */
 {	
+	// Grab the netmask's dotted decimal representation and convert it to an STL bitset.
+
 	return ConvertIPv4StringToSTLBitset(this->netmask);
 }
+/*******/
 
 std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBitwiseBooleanANDResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset) {
 	return this->GetAddressBitset() & bitset;
@@ -331,8 +335,25 @@ int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet)
 }
 /*******/
 
-std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetOctetBinaryByIndex(const int indexOfOctet) {
+std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetOctetBinaryByIndex(const int indexOfOctet) 
+/****f* LibIPvX/GetOctetBinaryByIndex(const int indexOfOctet);
 
+	* NAME
+	*	GetOctetBinaryByIndex(const int indexOfOctet);
+	* DESCRIPTION
+	*	Returns the bitset of the octet at the index specified by indexOfOctet.
+
+	* PARAMETERS 
+	*	The index (0..3) of the desired octet.
+	* RETURN VALUE
+	*	std::bitset<IPV4_OCTET_LENGTH>
+	* USAGE	
+        *       std::unique_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
+        *       std::cout << "Bitset value of octet at index 0 is" << address->GetOctetDecimalByIndex(0) << std::endl;
+	*	prints: "10"
+	* SOURCE
+	*/
+{
 	std::bitset<IPV4_OCTET_LENGTH> _bitset;
 
 	for ( size_t i = IPV4_FIRST_OCTET_INDEX; i < IPV4_OCTET_LENGTH; i++ ) {
@@ -341,6 +362,7 @@ std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetOctetBinaryByIndex(const int index
 
 	return _bitset;
 }
+/*******/
 
 int	IP4Address::GetFirstOctetDecimal() {
 
