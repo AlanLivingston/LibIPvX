@@ -38,6 +38,73 @@ std::string IP6Address::GetStringFromBitset(const std::bitset<IPV6_ADDRESS_LENGT
 }
 
 
+int IP6Address::GetFirstBlockDecimal(){
+	return this->GetBlockDecimalByIndex(0);
+}
+
+int IP6Address::GetSecondBlockDecimal(){
+	return this->GetBlockDecimalByIndex(1);
+}
+
+int IP6Address::GetThirdBlockDecimal(){
+	return this->GetBlockDecimalByIndex(2);
+}
+
+int IP6Address::GetFourthBlockDecimal(){
+	return this->GetBlockDecimalByIndex(3);
+}
+
+int IP6Address::GetFifthBlockDecimal(){
+	return this->GetBlockDecimalByIndex(4);
+}
+
+int IP6Address::GetSixthBlockDecimal(){
+	return this->GetBlockDecimalByIndex(5);
+}
+
+int IP6Address::GetSeventhBlockDecimal(){
+	return this->GetBlockDecimalByIndex(6);
+}
+
+int GetEigthBlockDecimal(){
+	return this->GetBlockDecimalByIndex(7);
+}
+
+
+
+std::bitset<IPV6_BLOCK_SIZE> IP6Address::GetFirstBlockBitset(){
+	return this->GetBlockBitsetByIndex(0);
+}
+
+std::bitset<IPV6_BLOCK_SIZE> IP6Address::GetSecondBlockBitset(){
+	return this->GetBlockBitsetByIndex(1);
+}
+
+std::bitset<IPV6_BLOCK_SIZE> IP6Address::GetThirdBlockBitset(){
+	return this->GetBlockBitsetByIndex(2);
+}
+
+std::bitset<IPV6_BLOCK_SIZE> IP6Address::GetFourthBlockBitset(){
+	return this->GetBlockBitsetByIndex(3);
+}
+
+std::bitset<IPV6_BLOCK_SIZE> IP6Address::GetFifthBlockBitset(){
+	return this->GetBlockBitsetByIndex(4);
+}
+
+std::bitset<IPV6_BLOCK_SIZE> IP6Address::GetSixthBlockBitset(){
+	return this->GetBlockBitsetByIndex(5);
+}
+
+std::bitset<IPV6_BLOCK_SIZE> IP6Address::GetSeventhBlockBitset(){
+	return this->GetBlockBitsetByIndex(6);
+}
+
+std::bitset<IPV6_BLOCK_SIZE> IP6Address::GetEigthBlockBitset(){
+	return this->GetBlockBitsetByIndex(7);
+}
+
+
 
 
 int IP6Address::GetBlockDecimalByIndex(int index){
