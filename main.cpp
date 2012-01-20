@@ -79,8 +79,8 @@ int main(int argc, wchar_t* argv[])
 	std::cout << std::endl;
 	
 	// Display the broadcast address.
-	assert( address->GetBroadcastAddress() == "10.1.127.255" );
-	std::cout << "Broadcast address: " << address->GetBroadcastAddress() << std::endl;
+	assert( address->GetBroadcastAddressString() == "10.1.127.255" );
+	std::cout << "Broadcast address: " << address->GetBroadcastAddressString() << std::endl;
 	std::cout << std::endl;
 	
 	// Is this address a broadcast address, no.

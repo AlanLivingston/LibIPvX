@@ -4,7 +4,22 @@
 #include "stdafx.h"
 #include "ipvxstatic.h"
 	
-class IP4Address{
+class IP4Address
+/****c* LibIPvX/IP4Address
+         * NAME
+         *       IP4Address
+         * DESCRIPTION
+         *       LIBIPvX representation of an IPv4 address.
+         * PARAMETERS 
+         *       None.
+         * USAGE 
+         *       std::unique_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
+         *
+         *       std::cout << "Decimal value of octet at index 0 is" << address->GetOctetDecimalByIndex(0) << std::endl;
+	 *	 prints: "10"
+         * SOURCE
+         */
+{
 
 public:
 	IP4Address(std::string _address) {
@@ -24,25 +39,25 @@ public:
 	std::bitset<IPV4_ADDRESS_LENGTH>	GetBitwiseBooleanORResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset);
 	std::bitset<IPV4_ADDRESS_LENGTH>	GetBitwiseNOTResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset);		
 	std::bitset<IPV4_ADDRESS_LENGTH>	GetBroadcastAddressBitset();
-	std::string				GetBroadcastAddress();	
-	char					GetClass();	
+	std::string				GetBroadcastAddressString();	
+	char					GetClass();
 	std::string				GetDefaultNetmask();
 	std::bitset<IPV4_OCTET_LENGTH>		GetFirstOctetBitset();
-	int						GetFirstOctetDecimal();	
+	int					GetFirstOctetDecimal();	
 	std::bitset<IPV4_OCTET_LENGTH>		GetFourthOctetBitset();
-	int						GetFourthOctetDecimal();
+	int					GetFourthOctetDecimal();
 	std::string				GetInverseNetmaskString();
 	std::bitset<IPV4_ADDRESS_LENGTH>	GetInverseNetmaskBitset();
-	int						GetNetmaskBitLength();
+	int					GetNetmaskBitLength();
 	std::bitset<IPV4_ADDRESS_LENGTH>	GetNetmaskBitset();
 	std::string				GetNetmaskAddressString();
 	std::bitset<IPV4_OCTET_LENGTH>		GetOctetBinaryByIndex(const int indexOfOctet);	
-	int						GetOctetDecimalByIndex(const int indexOfOctet);	
+	int					GetOctetDecimalByIndex(const int indexOfOctet);	
 	std::bitset<IPV4_ADDRESS_LENGTH>	GetSubnetAddressBitset();		
 	std::string				GetSubnetAddress();
-	int						GetSecondOctetDecimal();
+	int					GetSecondOctetDecimal();
 	std::bitset<IPV4_OCTET_LENGTH>		GetSecondOctetBitset();
-	int						GetThirdOctetDecimal();
+	int					GetThirdOctetDecimal();
 	std::bitset<IPV4_OCTET_LENGTH>		GetThirdOctetBitset();
 	bool					IsBroadcastAddress();
 	bool					IsSubnetAddress();		

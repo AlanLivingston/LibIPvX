@@ -21,6 +21,7 @@ ROBODOC_BIN=/usr/bin/robodoc
 
 echo "Generating LIBIPvX API documentation..";
 
-${ROBODOC_BIN} --src ${SRC_DIR} --doc ${DOC_DIR} --multidoc --html --tell
+${ROBODOC_BIN} --src ${SRC_DIR} --doc ${DOC_DIR} --multidoc --html --index --tell
 
 echo "Finished!";
+
