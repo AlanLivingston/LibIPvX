@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2012  The FOSS Project 
+  Copyright (C) 2012  The FOSS Project
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -113,8 +113,8 @@ std::string IP4Address::GetAddressStringFromBitset(const std::bitset<IPV4_ADDRES
 			if ( _bitset[( IPV4_OCTET_LENGTH * o) + b] == 1 && ((8 * o) + b) < _bitset.size()  ) {
 				octet += val;
 			}
-
-			val /= 2;
+			//Shift by 1 same as /= 2
+			val = val >> 1;
 		}
 		
 		std::stringstream ss;
@@ -323,7 +323,8 @@ int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet)
 		if ( bitset[i] == 1 && i < bitset.size() ) {
 			octetDecimal += max;			
 		}
-		max /= 2;
+		//Shift right 1 same as /= 2 more effecient
+		max = max >> 1;
 	}
 
 	return octetDecimal;
@@ -332,13 +333,13 @@ int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet)
 
 std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetOctetBinaryByIndex(const int indexOfOctet) {
 
-	std::bitset<IPV4_OCTET_LENGTH> bitset;
+	std::bitset<IPV4_OCTET_LENGTH> _bitset;
 
 	for ( size_t i = IPV4_FIRST_OCTET_INDEX; i < IPV4_OCTET_LENGTH; i++ ) {
-		bitset.set(i, this->bitset[ ( indexOfOctet * 8 ) + i] );
+		_bitset.set(i, this->bitset[ ( indexOfOctet * 8 ) + i] );
 	}
 
-	return bitset;
+	return _bitset;
 }
 
 int	IP4Address::GetFirstOctetDecimal() {
@@ -430,14 +431,14 @@ std::string	IP4Address::GetNetmaskAddressString() {
 }
 
 std::string	IP4Address::GetInverseNetmaskString(){
-	std::bitset<IPV4_ADDRESS_LENGTH> bitset = this->GetInverseNetmaskBitset();
-	return this->GetAddressStringFromBitset(bitset);
+	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = this->GetInverseNetmaskBitset();
+	return this->GetAddressStringFromBitset(_bitset);
 }
 
 std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetInverseNetmaskBitset() {
-	std::bitset<IPV4_ADDRESS_LENGTH> bitset = ConvertIPv4StringToSTLBitset(this->GetNetmaskAddressString());
-	bitset.flip();	
-	return bitset;
+	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = ConvertIPv4StringToSTLBitset(this->GetNetmaskAddressString());
+	_bitset.flip();	
+	return _bitset;
 }
 
 std::unique_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {

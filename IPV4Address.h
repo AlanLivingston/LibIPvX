@@ -30,8 +30,7 @@ public:
 	~IP4Address(void) {
 	}
 
-	std::bitset<IPV4_ADDRESS_LENGTH>	bitset;
-	std::string				netmask;	
+	std::string				netmask;
 	std::string				GetAddressString();
 	std::bitset<IPV4_ADDRESS_LENGTH>	GetAddressBitset();
 	std::string				GetAddressStringFromBitset(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset);		
@@ -65,6 +64,8 @@ public:
 	std::unique_ptr<IP4Address>		GetFirstAddressInRange();
 	std::unique_ptr<IP4Address>		GetLastAddressInRange();
 	int					GetNetmaskHostPortionBitLength();
+private:
+	std::bitset<IPV4_ADDRESS_LENGTH>	bitset;
 };
  /*******/	
 
