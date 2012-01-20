@@ -17,6 +17,8 @@
 
 #include "ipvxlib.h"
 
+using namespace libipvx;
+
 // This program smoke tests the LibIPvX library.
 int main(int argc, char** argv)
 {

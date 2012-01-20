@@ -17,7 +17,7 @@
 
 #include "IPV4Address.h"
 
-int IP4Address::GetNetmaskBitLength() 
+int libipvx::IP4Address::GetNetmaskBitLength() 
 /****f* LibIPvX/GetNetmaskBitLength();
          * NAME
          *       GetNetmaskBitLength();
@@ -38,7 +38,7 @@ int IP4Address::GetNetmaskBitLength()
 }
 /*******/
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetNetmaskBitset() 
+std::bitset<IPV4_ADDRESS_LENGTH> libipvx::IP4Address::GetNetmaskBitset() 
 /****f* LibIPvX/GetNetmaskBitset();
          * NAME
          *       GetNetmaskBitset();
@@ -62,15 +62,15 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetNetmaskBitset()
 }
 /*******/
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBitwiseBooleanANDResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset) {
+std::bitset<IPV4_ADDRESS_LENGTH> libipvx::IP4Address::GetBitwiseBooleanANDResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset) {
 	return this->GetAddressBitset() & bitset;
 }
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetAddressBitset() {
+std::bitset<IPV4_ADDRESS_LENGTH> libipvx::IP4Address::GetAddressBitset() {
 	return this->bitset;
 }
 
-bool IP4Address::IsSubnetted() {
+bool libipvx::IP4Address::IsSubnetted() {
 	
 	// Determine if we're subnetting by comparing the number of bits
 	// in the netmask to the address class.
@@ -93,7 +93,7 @@ bool IP4Address::IsSubnetted() {
 	return true;
 }
 
-std::string IP4Address::GetSubnetAddress() {
+std::string libipvx::IP4Address::GetSubnetAddress() {
 	// Covert the std::string netmask into a bitset.
 	std::bitset<IPV4_ADDRESS_LENGTH> netmaskBits = ConvertIPv4StringToSTLBitset(this->netmask);
 
@@ -104,7 +104,7 @@ std::string IP4Address::GetSubnetAddress() {
 	return this->GetAddressStringFromBitset(bitwiseBoolANDbits);
 }
 
-std::string IP4Address::GetAddressStringFromBitset(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset) {
+std::string libipvx::IP4Address::GetAddressStringFromBitset(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset) {
 	
 	std::string _addressString;
 	for ( int o = 0; o < IPV4_OCTET_COUNT; o++ ){
@@ -133,12 +133,12 @@ std::string IP4Address::GetAddressStringFromBitset(const std::bitset<IPV4_ADDRES
 	return _addressString;
 }
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBitwiseNOTResult(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset) {
+std::bitset<IPV4_ADDRESS_LENGTH> libipvx::IP4Address::GetBitwiseNOTResult(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset) {
 	std::bitset<IPV4_ADDRESS_LENGTH> tempBitset = _bitset;
 	return tempBitset.flip();
 }
 
-std::string IP4Address::GetBroadcastAddressString() 
+std::string libipvx::IP4Address::GetBroadcastAddressString() 
 /****f* LibIPvX/GetBroadcastAddressString();
 	* NAME
 	*	GetBroadcastAddressString();
@@ -166,7 +166,7 @@ std::string IP4Address::GetBroadcastAddressString()
 }
 /*******/
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBitwiseBooleanORResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset)
+std::bitset<IPV4_ADDRESS_LENGTH> libipvx::IP4Address::GetBitwiseBooleanORResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset)
 /****f* LibIPvX/GetBitwiseBooleanORResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset);
 	* NAME
 	*	GetBitwiseBooleanORResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset);
@@ -190,7 +190,7 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBitwiseBooleanORResult(const std
 }
 /*******/
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBroadcastAddressBitset() 
+std::bitset<IPV4_ADDRESS_LENGTH> libipvx::IP4Address::GetBroadcastAddressBitset() 
 /****f* LibIPvX/GetBroadcastAddressBitset();
          * NAME
          *       GetBroadcastAddressBitset();
@@ -211,7 +211,7 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetBroadcastAddressBitset()
 }
 /*******/
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetSubnetAddressBitset() 
+std::bitset<IPV4_ADDRESS_LENGTH> libipvx::IP4Address::GetSubnetAddressBitset() 
 /****f* LibIPvX/GetSubnetAddressBitset();
         * NAME
         *       GetSubnetAddressBitset();
@@ -232,7 +232,7 @@ std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetSubnetAddressBitset()
 }
 /*******/
 
-std::string IP4Address::GetAddressString() 
+std::string libipvx::IP4Address::GetAddressString() 
 /****f* LibIPvX/GetAddressString();
         * NAME
         *       GetAddressString(); 
@@ -253,7 +253,7 @@ std::string IP4Address::GetAddressString()
 }
 /*******/
 
-bool IP4Address::IsBroadcastAddress() 
+bool libipvx::IP4Address::IsBroadcastAddress() 
 /****f* LibIPvX/IsBroadcastAddress();
 	* NAME
 	*	IsBroadcastAddress();
@@ -276,7 +276,7 @@ bool IP4Address::IsBroadcastAddress()
 }
 /*******/	
 
-bool IP4Address::IsSubnetAddress() 
+bool libipvx::IP4Address::IsSubnetAddress() 
 /****f* LibIPvX/IsSubnetAddress();	
 	* NAME
 	*	IsSubnetAddress();
@@ -299,7 +299,7 @@ bool IP4Address::IsSubnetAddress()
 }
  /*******/	
 
-int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet) 
+int libipvx::IP4Address::GetOctetDecimalByIndex(const int indexOfOctet) 
 /****f* LibIPvX/GetOctetDecimalByIndex(const int indexOfOctet);
          * NAME
          *       GetOctetDecimalByIndex(const int indexOfOctet);
@@ -335,7 +335,7 @@ int IP4Address::GetOctetDecimalByIndex(const int indexOfOctet)
 }
 /*******/
 
-std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetOctetBinaryByIndex(const int indexOfOctet) 
+std::bitset<IPV4_OCTET_LENGTH> libipvx::IP4Address::GetOctetBinaryByIndex(const int indexOfOctet) 
 /****f* LibIPvX/GetOctetBinaryByIndex(const int indexOfOctet);
 
 	* NAME
@@ -364,47 +364,47 @@ std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetOctetBinaryByIndex(const int index
 }
 /*******/
 
-int	IP4Address::GetFirstOctetDecimal() {
+int libipvx::IP4Address::GetFirstOctetDecimal() {
 
 	return this->GetOctetDecimalByIndex(IPV4_FIRST_OCTET_INDEX);
 }
 
-int	IP4Address::GetSecondOctetDecimal() {
+int libipvx::IP4Address::GetSecondOctetDecimal() {
 
 	return this->GetOctetDecimalByIndex(IPV4_SECOND_OCTET_INDEX);
 }
 
-int	IP4Address::GetThirdOctetDecimal() {
+int libipvx::IP4Address::GetThirdOctetDecimal() {
 
 	return this->GetOctetDecimalByIndex(IPV4_THIRD_OCTET_INDEX);
 }
 
-int	IP4Address::GetFourthOctetDecimal() {
+int libipvx::IP4Address::GetFourthOctetDecimal() {
 
 	return this->GetOctetDecimalByIndex(IPV4_FOURTH_OCTET_INDEX);
 }
 
-std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetFirstOctetBitset() {
+std::bitset<IPV4_OCTET_LENGTH> libipvx::IP4Address::GetFirstOctetBitset() {
 
 	return this->GetOctetBinaryByIndex(IPV4_FIRST_OCTET_INDEX);
 }
 
-std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetSecondOctetBitset() {
+std::bitset<IPV4_OCTET_LENGTH> libipvx::IP4Address::GetSecondOctetBitset() {
 
 	return this->GetOctetBinaryByIndex(IPV4_SECOND_OCTET_INDEX);
 }
 
-std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetThirdOctetBitset() {
+std::bitset<IPV4_OCTET_LENGTH> libipvx::IP4Address::GetThirdOctetBitset() {
 
 	return this->GetOctetBinaryByIndex(IPV4_THIRD_OCTET_INDEX);
 }
 
-std::bitset<IPV4_OCTET_LENGTH> IP4Address::GetFourthOctetBitset() {
+std::bitset<IPV4_OCTET_LENGTH> libipvx::IP4Address::GetFourthOctetBitset() {
 
 	return this->GetOctetBinaryByIndex(IPV4_FOURTH_OCTET_INDEX);
 }
 
-std::string IP4Address::GetDefaultNetmask() {
+std::string libipvx::IP4Address::GetDefaultNetmask() {
 	if ( this->GetClass() == IPV4_ADDRESS_CLASS_A) {
 		return IPV4_CLASS_A_DEFAULT_SUBNET_MASK;
 	}
@@ -419,7 +419,7 @@ std::string IP4Address::GetDefaultNetmask() {
 	}
 }
 
-char IP4Address::GetClass() {
+char libipvx::IP4Address::GetClass() {
 	
 	// Check the first octet for the whereabouts of the zero bit
 	// as this is indicative the class.
@@ -448,22 +448,22 @@ char IP4Address::GetClass() {
 	return 'X'; // yelp! nothing can possible (sic) go wrong...well gee, that's the first thing that's gone wrong.
 }
 
-std::string	IP4Address::GetNetmaskAddressString() {
+std::string libipvx::IP4Address::GetNetmaskAddressString() {
 	return this->netmask;
 }
 
-std::string	IP4Address::GetInverseNetmaskString(){
+std::string libipvx::IP4Address::GetInverseNetmaskString(){
 	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = this->GetInverseNetmaskBitset();
 	return this->GetAddressStringFromBitset(_bitset);
 }
 
-std::bitset<IPV4_ADDRESS_LENGTH> IP4Address::GetInverseNetmaskBitset() {
+std::bitset<IPV4_ADDRESS_LENGTH> libipvx::IP4Address::GetInverseNetmaskBitset() {
 	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = ConvertIPv4StringToSTLBitset(this->GetNetmaskAddressString());
 	_bitset.flip();	
 	return _bitset;
 }
 
-std::unique_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {
+std::unique_ptr<libipvx::IP4Address> libipvx::IP4Address::GetFirstAddressInRange() {
 	
 	// Get the bitset of the subnet address.
 	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = this->GetSubnetAddressBitset();
@@ -479,7 +479,7 @@ std::unique_ptr<IP4Address> IP4Address::GetFirstAddressInRange() {
 	return _addr;
 }
 
-std::unique_ptr<IP4Address> IP4Address::GetLastAddressInRange() {
+std::unique_ptr<libipvx::IP4Address> libipvx::IP4Address::GetLastAddressInRange() {
 	// Get the bitset of the broadcast address.
 	std::bitset<IPV4_ADDRESS_LENGTH> _bitset = this->GetBroadcastAddressBitset();
 
@@ -494,7 +494,7 @@ std::unique_ptr<IP4Address> IP4Address::GetLastAddressInRange() {
 	return _addr;
 }
 
-int	IP4Address::GetNetmaskHostPortionBitLength() {
+int libipvx::IP4Address::GetNetmaskHostPortionBitLength() {
 	int hostSize = IPV4_ADDRESS_LENGTH - this->GetNetmaskBitLength();
 	return hostSize;
 }
