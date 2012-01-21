@@ -1,6 +1,12 @@
 #include "IPV6Address.h"
 
 
+IP6Address::IP6Address(std::string) 
+{
+	this->bitset = ConvertIPv6StringToSTLBitset(_address);
+	this->netmask = this->GetDefaultNetMask();
+}
+
 std::string IP6Address::GetAddressString(){
 	return this->GetStringFromBitset(this->bitset);
 }

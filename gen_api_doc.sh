@@ -12,15 +12,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# This script uses ROBODoc to generate LIBIPvX's API documentation.
-# Simple run it without arguements e.g. ./doc_gen
+# This script uses ROBODoc to generate LIBIPvX's API documentation, simply run it without arguements.
 
 DOC_DIR=doc
 SRC_DIR=.
 ROBODOC_BIN=/usr/bin/robodoc
+OPTIONS="--multidoc --html --index --tell --syntaxcolors --source_line_numbers"
 
 echo "Generating LIBIPvX API documentation..";
 
-${ROBODOC_BIN} --src ${SRC_DIR} --doc ${DOC_DIR} --multidoc --html --index --tell
+${ROBODOC_BIN} --src ${SRC_DIR} --doc ${DOC_DIR} ${OPTIONS} --documenttitle "LIBIPvX API Documentation"
 
 echo "Finished!";

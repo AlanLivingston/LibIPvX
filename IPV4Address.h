@@ -6,14 +6,46 @@
 	
 namespace libipvx 
 {
-	class IP4Address
-	/****c* LibIPvX/IP4Address
+	/****c* IP4Address/IP4Address
 		 * NAME
 		 *       IP4Address
 		 * DESCRIPTION
 		 *       LIBIPvX representation of an IPv4 address.
 		 * PARAMETERS 
 		 *       None.
+		 * METHODS
+		 *	std::string				GetAddressString();
+		 *	std::bitset<IPV4_ADDRESS_LENGTH>	GetAddressBitset();
+		 *	std::string				GetAddressStringFromBitset(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset);		
+		 *	std::bitset<IPV4_ADDRESS_LENGTH>	GetBitwiseBooleanANDResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset);
+		 *	std::bitset<IPV4_ADDRESS_LENGTH>	GetBitwiseBooleanORResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset);	
+		 *	std::bitset<IPV4_ADDRESS_LENGTH>	GetBroadcastAddressBitset();
+		 *	std::string				GetBroadcastAddressString();	
+		 *	char					GetClass();
+		 *	std::string				GetDefaultNetmask();
+		 *	std::bitset<IPV4_OCTET_LENGTH>		GetFirstOctetBitset();
+		 *	int					GetFirstOctetDecimal();	
+		 *	std::bitset<IPV4_OCTET_LENGTH>		GetFourthOctetBitset();
+		 *	int					GetFourthOctetDecimal();
+		 *	std::string				GetInverseNetmaskString();
+		 *	std::bitset<IPV4_ADDRESS_LENGTH>	GetInverseNetmaskBitset();
+		 *	int					GetNetmaskBitLength();
+		 *	std::bitset<IPV4_ADDRESS_LENGTH>	GetNetmaskBitset();
+		 *	std::string				GetNetmaskAddressString();
+		 *	std::bitset<IPV4_OCTET_LENGTH>		GetOctetBitsetByIndex(const int indexOfOctet);	
+		 *	int					GetOctetDecimalByIndex(const int indexOfOctet);	
+		 *	std::bitset<IPV4_ADDRESS_LENGTH>	GetSubnetAddressBitset();		
+		 *	std::string				GetSubnetAddress();
+		 *	int					GetSecondOctetDecimal();
+		 *	std::bitset<IPV4_OCTET_LENGTH>		GetSecondOctetBitset();
+		 *	int					GetThirdOctetDecimal();
+		 *	std::bitset<IPV4_OCTET_LENGTH>		GetThirdOctetBitset();
+		 *	bool					IsBroadcastAddress();
+		 *	bool					IsSubnetAddress();		
+		 *	bool					IsSubnetted();
+		 *	std::unique_ptr<IP4Address>		GetFirstAddressInRange();
+		 *	std::unique_ptr<IP4Address>		GetLastAddressInRange();
+		 *	int					GetNetmaskHostPortionBitLength();
 		 * USAGE 
 		 *       std::unique_ptr<IP4Address> address(new IP4Address("10.1.5.2"));
 		 *
@@ -21,6 +53,7 @@ namespace libipvx
 		 *	 prints: "10"
 		 * SOURCE
 		 */
+	class IP4Address
 	{
 
 	public:
@@ -37,8 +70,7 @@ namespace libipvx
 		std::bitset<IPV4_ADDRESS_LENGTH>	GetAddressBitset();
 		std::string				GetAddressStringFromBitset(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset);		
 		std::bitset<IPV4_ADDRESS_LENGTH>	GetBitwiseBooleanANDResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset);
-		std::bitset<IPV4_ADDRESS_LENGTH>	GetBitwiseBooleanORResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset);
-		std::bitset<IPV4_ADDRESS_LENGTH>	GetBitwiseNOTResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset);		
+		std::bitset<IPV4_ADDRESS_LENGTH>	GetBitwiseBooleanORResult(const std::bitset<IPV4_ADDRESS_LENGTH> bitset);	
 		std::bitset<IPV4_ADDRESS_LENGTH>	GetBroadcastAddressBitset();
 		std::string				GetBroadcastAddressString();	
 		char					GetClass();
@@ -52,7 +84,7 @@ namespace libipvx
 		int					GetNetmaskBitLength();
 		std::bitset<IPV4_ADDRESS_LENGTH>	GetNetmaskBitset();
 		std::string				GetNetmaskAddressString();
-		std::bitset<IPV4_OCTET_LENGTH>		GetOctetBinaryByIndex(const int indexOfOctet);	
+		std::bitset<IPV4_OCTET_LENGTH>		GetOctetBitsetByIndex(const int indexOfOctet);	
 		int					GetOctetDecimalByIndex(const int indexOfOctet);	
 		std::bitset<IPV4_ADDRESS_LENGTH>	GetSubnetAddressBitset();		
 		std::string				GetSubnetAddress();

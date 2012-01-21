@@ -1,6 +1,32 @@
 #include "ipvxstatic.h"
 
 
+/****f* LibIPvX/GetBitwiseNOTResult(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset);
+	* NAME
+	*	GetBitwiseNOTResult(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset);
+	* DESCRIPTION
+	*	Performs a bitwise NOT (flips) on the bitset parameter and returns the result.
+	* PARAMETERS 
+	*	_bitset - the bitset to flip.
+	* RETURN VALUE
+	*	std::bitset<IPV4_ADDRESS_LENGTH> 
+	* USAGE	
+        * #include "libipvx.h"
+        * using namespace libipvx;
+        * 
+        * int main ()
+        * {
+        *   	return 0;
+        * }
+	* SOURCE
+	*/
+std::bitset<IPV4_ADDRESS_LENGTH> GetBitwiseNOTResult(const std::bitset<IPV4_ADDRESS_LENGTH> _bitset) 
+{
+	std::bitset<IPV4_ADDRESS_LENGTH> tempBitset = _bitset;
+	return tempBitset.flip();
+}
+/*******/
+
 std::bitset<IPV4_ADDRESS_LENGTH> ConvertIPv4StringToSTLBitset(const std::string _address)  {
 	// Index of each peroid in address string.
 	// expected format, dec.dec.dec.dec;

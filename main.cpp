@@ -129,7 +129,7 @@ int main(int argc, char** argv)
 
 	// Get each Octet's binary using an array.
 	for ( size_t i = 0; i < IPV4_OCTET_COUNT; i++ ) {
-		std::cout << "Fetching Octet's binary in array at index " << i << ": " << address->GetOctetBinaryByIndex(i) << std::endl;
+		std::cout << "Fetching Octet's binary in array at index " << i << ": " << address->GetOctetBitsetByIndex(i) << std::endl;
 	}
 	std::cout << std::endl;
 	
@@ -181,7 +181,7 @@ int main(int argc, char** argv)
 	std::cout << std::endl;
 
 	// Get bit length of host portion of the netmask.
-	assert( address->GetNetmaskHostPortionBitLength() == 15 );
+	assert( address->GetNetmaskHostPortionBitLength() == 9 );
 	std::cout << "Bit length of host portion of netmask is: " << address->GetNetmaskHostPortionBitLength()  << std::endl;
 
 
